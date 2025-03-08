@@ -12,56 +12,49 @@
     </header>
 
     <nav class="category-menu">
-        <select id="category-select" onchange="navigateToCategory()">
-            <option value="">Select a Category</option>
-            <optgroup label="Electronics">
-                <option value="https://www.amazon.com/s?i=electronics&tag=allthedisco04-20">All Electronics</option>
-                <option value="https://www.amazon.com/s?i=electronics&rh=n%3A172282&tag=allthedisco04-20">Laptops</option>
-                <option value="https://www.amazon.com/s?i=electronics&rh=n%3A172659&tag=allthedisco04-20">TVs</option>
-                <option value="https://www.amazon.com/s?i=electronics&rh=n%3A7072561011&tag=allthedisco04-20">Smartphones</option>
-            </optgroup>
-            <optgroup label="Home & Tools">
-                <option value="https://www.amazon.com/s?i=home-garden&tag=allthedisco04-20">All Home & Tools</option>
-                <option value="https://www.amazon.com/s?i=home-garden&rh=n%3A284507&tag=allthedisco04-20">Kitchen Appliances</option>
-                <option value="https://www.amazon.com/s?i=home-garden&rh=n%3A328182011&tag=allthedisco04-20">Power Tools</option>
-            </optgroup>
-            <optgroup label="Fashion">
-                <option value="https://www.amazon.com/s?i=fashion&tag=allthedisco04-20">All Fashion</option>
-                <option value="https://www.amazon.com/s?i=fashion-mens&tag=allthedisco04-20">Men's Clothing</option>
-                <option value="https://www.amazon.com/s?i=fashion-womens&tag=allthedisco04-20">Women's Clothing</option>
-                <option value="https://www.amazon.com/s?i=fashion-kids&tag=allthedisco04-20">Kids' Clothing</option>
-            </optgroup>
-        </select>
+        <ul>
+            <li class="dropdown">
+                <a href="https://www.amazon.com/s?i=baby-products&tag=allthedisco04-20" target="_blank">Baby</a>
+                <ul class="dropdown-content">
+                    <li><a href="https://www.amazon.com/s?i=baby-products&rh=n%3A166835011&tag=allthedisco04-20" target="_blank">Strollers & Car Seats</a></li>
+                    <li><a href="https://www.amazon.com/s?i=baby-products&rh=n%3A166870011&tag=allthedisco04-20" target="_blank">Baby Monitors</a></li>
+                    <li><a href="https://www.amazon.com/s?i=baby-products&rh=n%3A14162031&tag=allthedisco04-20" target="_blank">Nursery Furniture</a></li>
+                    <li><a href="https://www.amazon.com/s?i=baby-products&rh=n%3A7141123011&tag=allthedisco04-20" target="_blank">Baby Clothing</a></li>
+                    <li><a href="https://www.amazon.com/s?i=baby-products&rh=n%3A166772011&tag=allthedisco04-20" target="_blank">Diapering & Changing</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="https://www.amazon.com/s?i=beauty&tag=allthedisco04-20" target="_blank">Beauty</a>
+                <ul class="dropdown-content">
+                    <li><a href="https://www.amazon.com/s?i=beauty&rh=n%3A11058281&tag=allthedisco04-20" target="_blank">Makeup</a></li>
+                    <li><a href="https://www.amazon.com/s?i=beauty&rh=n%3A3760911&tag=allthedisco04-20" target="_blank">Skincare</a></li>
+                    <li><a href="https://www.amazon.com/s?i=beauty&rh=n%3A11057241&tag=allthedisco04-20" target="_blank">Haircare</a></li>
+                    <li><a href="https://www.amazon.com/s?i=beauty&rh=n%3A11056591&tag=allthedisco04-20" target="_blank">Fragrances</a></li>
+                    <li><a href="https://www.amazon.com/s?i=beauty&rh=n%3A3785161&tag=allthedisco04-20" target="_blank">Beauty Tools</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="https://www.amazon.com/s?i=stripbooks&tag=allthedisco04-20" target="_blank">Books</a>
+                <ul class="dropdown-content">
+                    <li><a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A283155&tag=allthedisco04-20" target="_blank">Best Sellers</a></li>
+                    <li><a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A17&tag=allthedisco04-20" target="_blank">Fiction</a></li>
+                    <li><a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A18&tag=allthedisco04-20" target="_blank">Mystery & Thriller</a></li>
+                    <li><a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A25&tag=allthedisco04-20" target="_blank">Science Fiction & Fantasy</a></li>
+                    <li><a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A53&tag=allthedisco04-20" target="_blank">Non-Fiction</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="https://www.amazon.com/s?i=graphic-novels&tag=allthedisco04-20" target="_blank">Graphic Novels</a>
+                <ul class="dropdown-content">
+                    <li><a href="https://www.amazon.com/s?i=graphic-novels&rh=n%3A4366&tag=allthedisco04-20" target="_blank">Superhero Comics</a></li>
+                    <li><a href="https://www.amazon.com/s?i=graphic-novels&rh=n%3A4367&tag=allthedisco04-20" target="_blank">Manga</a></li>
+                    <li><a href="https://www.amazon.com/s?i=graphic-novels&rh=n%3A4368&tag=allthedisco04-20" target="_blank">Independent Comics</a></li>
+                    <li><a href="https://www.amazon.com/s?i=graphic-novels&rh=n%3A4369&tag=allthedisco04-20" target="_blank">Classic Graphic Novels</a></li>
+                    <li><a href="https://www.amazon.com/s?i=graphic-novels&rh=n%3A4370&tag=allthedisco04-20" target="_blank">Box Sets</a></li>
+                </ul>
+            </li>
+        </ul>
     </nav>
-
-    <main class="main-content">
-        <div class="search-container">
-            <h2>Search for a Deal</h2>
-            <input type="text" id="search-box" placeholder="Enter product name...">
-            <select id="discount">
-                <option value="all">All Discounts</option>
-                <option value="30-39">30%+ Off</option>
-                <option value="40-49">40%+ Off</option>
-                <option value="50-59">50%+ Off</option>
-                <option value="60-69">60%+ Off</option>
-                <option value="70-79">70%+ Off</option>
-                <option value="80-89">80%+ Off</option>
-                <option value="90-99">90%+ Off</option>
-            </select>
-            <button onclick="searchDeals()">Find Deals</button>
-        </div>
-
-        <div class="discount-buttons">
-            <h3>Shop by Discount</h3>
-            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+ Off</a>
-            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+ Off</a>
-            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+ Off</a>
-            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+ Off</a>
-            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+ Off</a>
-            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+ Off</a>
-            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+ Off</a>
-        </div>
-    </main>
 
     <script src="script.js"></script>
 </body>
