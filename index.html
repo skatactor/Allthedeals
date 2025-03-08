@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All The Deals</title>
+    <title>All The Discounts</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to All The Deals</h1>
-        <p>Find the best discounts from Amazon and more!</p>
+        <h1>Find the Best Discounts</h1>
+        <p>Click a category to find the biggest Amazon deals!</p>
     </header>
+
     <main>
-        <input type="text" id="search-box" placeholder="Search for deals...">
+        <div class="category-links">
+            <a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A283155%2Cp_8%3A70-99&tag=allthedisco04-20" target="_blank">📚 Books 70%+ Off</a>
+            <a href="https://www.amazon.com/s?i=electronics&rh=n%3A172282%2Cp_8%3A50-99&tag=allthedisco04-20" target="_blank">🔌 Electronics 50%+ Off</a>
+            <a href="https://www.amazon.com/s?i=videogames&rh=n%3A468642%2Cp_8%3A70-99&tag=allthedisco04-20" target="_blank">🎮 Video Games 70%+ Off</a>
+            <a href="https://www.amazon.com/s?i=fashion-mens&rh=n%3A7147441011%2Cp_8%3A50-99&tag=allthedisco04-20" target="_blank">👕 Men's Fashion 50%+ Off</a>
+            <a href="https://www.amazon.com/s?i=toys-and-games&rh=n%3A165793011%2Cp_8%3A50-99&tag=allthedisco04-20" target="_blank">🧸 Toys & Games 50%+ Off</a>
+        </div>
+
+        <h2>Or Search for a Deal</h2>
+        <input type="text" id="search-box" placeholder="Enter product name...">
         <button onclick="searchDeals()">Find Deals</button>
-        <div id="results"></div>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
