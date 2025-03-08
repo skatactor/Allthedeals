@@ -9,22 +9,55 @@
 <body>
     <header>
         <h1>Find the Best Discounts</h1>
-        <p>Click a category to find the biggest Amazon deals!</p>
+        <p>Click a category or search below to find the biggest Amazon deals!</p>
     </header>
 
-    <main>
-        <div class="category-links">
-            <a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A283155%2Cp_8%3A70-99&tag=allthedisco04-20" target="_blank">📚 Books 70%+ Off</a>
-            <a href="https://www.amazon.com/s?i=electronics&rh=n%3A172282%2Cp_8%3A50-99&tag=allthedisco04-20" target="_blank">🔌 Electronics 50%+ Off</a>
-            <a href="https://www.amazon.com/s?i=videogames&rh=n%3A468642%2Cp_8%3A70-99&tag=allthedisco04-20" target="_blank">🎮 Video Games 70%+ Off</a>
-            <a href="https://www.amazon.com/s?i=fashion-mens&rh=n%3A7147441011%2Cp_8%3A50-99&tag=allthedisco04-20" target="_blank">👕 Men's Fashion 50%+ Off</a>
-            <a href="https://www.amazon.com/s?i=toys-and-games&rh=n%3A165793011%2Cp_8%3A50-99&tag=allthedisco04-20" target="_blank">🧸 Toys & Games 50%+ Off</a>
-        </div>
+    <nav class="category-menu">
+        <ul>
+            <li class="dropdown">
+                <a href="#">Men's Clothing 👕</a>
+                <ul class="dropdown-content">
+                    <li><a href="https://www.amazon.com/s?i=fashion-mens&rh=p_8%3A30-39&tag=allthedisco04-20">30%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=fashion-mens&rh=p_8%3A50-59&tag=allthedisco04-20">50%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=fashion-mens&rh=p_8%3A70-79&tag=allthedisco04-20">70%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=fashion-mens&rh=p_8%3A90-99&tag=allthedisco04-20">90%+ Off</a></li>
+                </ul>
+            </li>
 
-        <h2>Or Search for a Deal</h2>
-        <input type="text" id="search-box" placeholder="Enter product name...">
-        <button onclick="searchDeals()">Find Deals</button>
-    </main>
+            <li class="dropdown">
+                <a href="#">Women's Clothing 👗</a>
+                <ul class="dropdown-content">
+                    <li><a href="https://www.amazon.com/s?i=fashion-womens&rh=p_8%3A30-39&tag=allthedisco04-20">30%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=fashion-womens&rh=p_8%3A50-59&tag=allthedisco04-20">50%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=fashion-womens&rh=p_8%3A70-79&tag=allthedisco04-20">70%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=fashion-womens&rh=p_8%3A90-99&tag=allthedisco04-20">90%+ Off</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Electronics 🔌</a>
+                <ul class="dropdown-content">
+                    <li><a href="https://www.amazon.com/s?i=electronics&rh=p_8%3A30-39&tag=allthedisco04-20">30%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=electronics&rh=p_8%3A50-59&tag=allthedisco04-20">50%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=electronics&rh=p_8%3A70-79&tag=allthedisco04-20">70%+ Off</a></li>
+                    <li><a href="https://www.amazon.com/s?i=electronics&rh=p_8%3A90-99&tag=allthedisco04-20">90%+ Off</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <h2>Search for a Deal</h2>
+    <input type="text" id="search-box" placeholder="Enter product name...">
+    <label for="discount">Discount:</label>
+    <select id="discount">
+        <option value="all">All Deals</option>
+        <option value="30-39">30%+ Off</option>
+        <option value="40-49">40%+ Off</option>
+        <option value="50-59">50%+ Off</option>
+        <option value="70-79">70%+ Off</option>
+        <option value="90-99">90%+ Off</option>
+    </select>
+    <button onclick="searchDeals()">Find Deals</button>
 
     <script src="script.js"></script>
 </body>
