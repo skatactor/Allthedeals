@@ -8,5 +8,5 @@ function searchDeals() {
     }
 
     amazonBaseURL += `&tag=allthedisco04-20`;
-    window.location.href = amazonBaseURL;
+    window.open(amazonBaseURL, "_blank");
 }

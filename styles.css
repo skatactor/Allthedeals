@@ -12,87 +12,21 @@ header {
     background-color: #333;
     color: white;
     text-align: center;
-    font-size: 18px;
-}
-
-.container {
-    display: flex;
-    flex: 1;
-}
-
-.sidebar {
-    width: 250px;
-    background-color: #222;
-    color: white;
-    padding: 15px;
-    height: 100vh;
-    overflow-y: auto;
-    position: fixed;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    position: relative;
-}
-
-.sidebar ul li a {
-    display: block;
-    padding: 12px;
-    color: white;
-    text-decoration: none;
-    background-color: #444;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-
-.sidebar ul li:hover > a {
-    background-color: #ff9900;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    left: 100%;
-    top: 0;
-    background-color: #555;
-    min-width: 200px;
-    border-radius: 5px;
-    z-index: 1;
-    padding: 0;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.main-content {
-    margin-left: 270px;
-    padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 20px;
 }
 
 .search-container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0;
 }
 
 input, button, select {
     padding: 10px;
-    margin-top: 10px;
-    width: 100%;
-    max-width: 300px;
+    margin: 5px;
+    width: 250px;
 }
 
 button {
@@ -105,5 +39,74 @@ button {
 }
 
 button:hover {
+    background-color: #cc7a00;
+}
+
+.category-menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.category-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.category-menu ul li {
+    position: relative;
+}
+
+.category-menu ul li a {
+    display: block;
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.category-menu ul li:hover > a {
+    background-color: #ff9900;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #555;
+    border-radius: 5px;
+    padding: 5px 0;
+    z-index: 1;
+}
+
+.dropdown-content li {
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.discount-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.discount-buttons a {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #ff9900;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.discount-buttons a:hover {
     background-color: #cc7a00;
 }
