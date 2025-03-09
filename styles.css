@@ -1,112 +1,68 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-header {
-    background-color: #35424a;
-    color: #ffffff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.site-title {
-    margin: 0;
-    font-size: 2em;
-}
-
-.search-container {
-    padding: 20px;
-    text-align: center;
-}
-
-.search-container input[type="text"] {
-    padding: 10px;
-    width: 300px;
-    margin: 10px 0;
-}
-
-.search-container select {
-    padding: 10px;
-    margin: 10px 0;
-}
-
-.search-container button {
-    padding: 10px 20px;
-    background-color: #35424a;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-}
-
-.search-container button:hover {
-    background-color: #45a049;
-}
-
-.instruction {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
-.category-list {
-    list-style-type: none;
-    padding: 0;
-}
-
+/* Main Category Styles */
 .category {
-    background-color: #ffffff;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #dddddd;
     cursor: pointer;
+    padding: 10px;
+    background: #444;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .category:hover {
-    background-color: #f1f1f1;
+    background: #ff9900;
+    transform: scale(1.02);
 }
 
+/* Discount Buttons Grid */
 .discount-buttons-grid {
-    display: none;
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 10px;
+    gap: 5px;
+    margin-top: 10px;
 }
 
 .discount-buttons-grid a {
-    display: block;
     padding: 10px;
-    background-color: #35424a;
-    color: #ffffff;
-    text-align: center;
+    background-color: #ff9900;
+    color: white;
     text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .discount-buttons-grid a:hover {
-    background-color: #45a049;
+    background-color: #cc7a00;
+    transform: scale(1.05);
 }
 
+/* Subcategory Styles */
 .subcategory-list {
-    list-style-type: none;
-    padding: 0;
     display: none;
+    padding-left: 20px;
+    list-style: none;
+    margin-top: 10px;
+}
+
+.subcategory-list.active {
+    display: block;
 }
 
 .subcategory-list li {
-    padding: 5px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
 }
 
-.subcategory-list li a {
+.subcategory-list a {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
     text-decoration: none;
-    color: #35424a;
+    font-weight: bold;
 }
 
-.subcategory-list li a:hover {
-    color: #45a049;
+.subcategory-list a:hover {
+    color: #ff9900;
 }
