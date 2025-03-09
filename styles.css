@@ -91,6 +91,11 @@ header {
     transform: scale(1.02);
 }
 
+.category.active {
+    background-color: #ff9900;
+    color: white;
+}
+
 .discount-buttons-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
