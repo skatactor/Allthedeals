@@ -9,8 +9,18 @@ function toggleSubcategories(categoryId) {
 
 function searchDeals() {
     let query = document.getElementById('search-box').value;
+    let category = document.getElementById('category').value;
     let discount = document.getElementById('discount').value;
-    let amazonBaseURL = `https://www.amazon.com/s?k=${encodeURIComponent(query)}`;
+
+    let amazonBaseURL = "https://www.amazon.com/s?";
+
+    if (query) {
+        amazonBaseURL += `k=${encodeURIComponent(query)}`;
+    }
+
+    if (category !== "all") {
+        amazonBaseURL += `&rh=n%3A${category}`;
+    }
 
     if (discount !== "all") {
         amazonBaseURL += `&rh=p_8%3A${discount}`;

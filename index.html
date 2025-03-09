@@ -15,6 +15,19 @@
     <div class="search-container">
         <h2>Search for a Deal</h2>
         <input type="text" id="search-box" placeholder="Enter product name...">
+        <select id="category">
+            <option value="all">All Categories</option>
+            <option value="172282">Electronics</option>
+            <option value="283155">Books</option>
+            <option value="4366">Graphic Novels</option>
+            <option value="1040658">Men's Clothing</option>
+            <option value="1040660">Women's Clothing</option>
+            <option value="1040664">Kids' Clothing</option>
+            <option value="679337011">Men's Shoes</option>
+            <option value="679255011">Women's Shoes</option>
+            <option value="165796011">Baby</option>
+            <option value="3760911">Beauty</option>
+        </select>
         <select id="discount">
             <option value="all">All Discounts</option>
             <option value="30-39">30%+ Off</option>
@@ -35,134 +48,31 @@
     <div class="container">
         <nav class="category-list">
             <ul>
-                <!-- Baby -->
-                <li class="category" onclick="toggleSubcategories('baby')">
-                    <span>Baby</span>
-                    <div class="discount-buttons-grid" id="baby-buttons">
-                        <a href="https://www.amazon.com/s?k=baby&node=165796011&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+</a>
-                        <a href="https://www.amazon.com/s?k=baby&node=165796011&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+</a>
-                        <a href="https://www.amazon.com/s?k=baby&node=165796011&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+</a>
-                        <a href="https://www.amazon.com/s?k=baby&node=165796011&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+</a>
-                        <a href="https://www.amazon.com/s?k=baby&node=165796011&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+</a>
-                        <a href="https://www.amazon.com/s?k=baby&node=165796011&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+</a>
-                        <a href="https://www.amazon.com/s?k=baby&node=165796011&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+</a>
-                    </div>
-                    <ul id="baby" class="subcategory-list">
-                        <li><a href="https://www.amazon.com/s?k=baby+care&node=165796011&tag=allthedisco04-20" target="_blank">Baby Care</a></li>
-                        <li><a href="https://www.amazon.com/s?k=baby+clothing&node=166443011&tag=allthedisco04-20" target="_blank">Baby Clothing</a></li>
-                    </ul>
-                </li>
+                <li class="category" onclick="toggleSubcategories('electronics')">Electronics</li>
+                <ul id="electronics" class="subcategory-list" style="display: none;">
+                    <li><a href="https://www.amazon.com/s?i=electronics&rh=n%3A172282&tag=allthedisco04-20" target="_blank">TVs & Home Theater</a></li>
+                    <li><a href="https://www.amazon.com/s?i=electronics&rh=n%3A281407&tag=allthedisco04-20" target="_blank">Smartphones & Accessories</a></li>
+                    <li><a href="https://www.amazon.com/s?i=electronics&rh=n%3A172541&tag=allthedisco04-20" target="_blank">Headphones & Audio</a></li>
+                </ul>
+                <li class="category" onclick="toggleSubcategories('books')">Books</li>
+                <ul id="books" class="subcategory-list" style="display: none;">
+                    <li><a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A283155&tag=allthedisco04-20" target="_blank">Best Sellers</a></li>
+                    <li><a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A17&tag=allthedisco04-20" target="_blank">Fiction</a></li>
+                    <li><a href="https://www.amazon.com/s?i=stripbooks&rh=n%3A18&tag=allthedisco04-20" target="_blank">Mystery & Thriller</a></li>
+                </ul>
+            </ul>
+        </nav>
 
-                <!-- Beauty -->
-                <li class="category" onclick="toggleSubcategories('beauty')">
-                    <span>Beauty</span>
-                    <div class="discount-buttons-grid" id="beauty-buttons">
-                        <a href="https://www.amazon.com/s?k=beauty&node=3760911&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+</a>
-                        <a href="https://www.amazon.com/s?k=beauty&node=3760911&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+</a>
-                        <a href="https://www.amazon.com/s?k=beauty&node=3760911&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+</a>
-                        <a href="https://www.amazon.com/s?k=beauty&node=3760911&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+</a>
-                        <a href="https://www.amazon.com/s?k=beauty&node=3760911&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+</a>
-                        <a href="https://www.amazon.com/s?k=beauty&node=3760911&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+</a>
-                        <a href="https://www.amazon.com/s?k=beauty&node=3760911&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+</a>
-                    </div>
-                    <ul id="beauty" class="subcategory-list">
-                        <li><a href="https://www.amazon.com/s?k=makeup&node=3760911&tag=allthedisco04-20" target="_blank">Makeup</a></li>
-                        <li><a href="https://www.amazon.com/s?k=skincare&node=11060451&tag=allthedisco04-20" target="_blank">Skincare</a></li>
-                    </ul>
-                </li>
-
-                <!-- Books -->
-                <li class="category" onclick="toggleSubcategories('books')">
-                    <span>Books</span>
-                    <div class="discount-buttons-grid" id="books-buttons">
-                        <a href="https://www.amazon.com/s?k=books&node=283155&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+</a>
-                        <a href="https://www.amazon.com/s?k=books&node=283155&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+</a>
-                        <a href="https://www.amazon.com/s?k=books&node=283155&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+</a>
-                        <a href="https://www.amazon.com/s?k=books&node=283155&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+</a>
-                        <a href="https://www.amazon.com/s?k=books&node=283155&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+</a>
-                        <a href="https://www.amazon.com/s?k=books&node=283155&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+</a>
-                        <a href="https://www.amazon.com/s?k=books&node=283155&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+</a>
-                    </div>
-                    <ul id="books" class="subcategory-list">
-                        <li><a href="https://www.amazon.com/s?k=books&node=283155&tag=allthedisco04-20" target="_blank">All Books</a></li>
-                        <li><a href="https://www.amazon.com/s?k=graphic+novels&node=4366&tag=allthedisco04-20" target="_blank">Graphic Novels</a></li>
-                    </ul>
-                </li>
-
-                <!-- Cell Phones -->
-                <li class="category" onclick="toggleSubcategories('cell-phones')">
-                    <span>Cell Phones</span>
-                    <div class="discount-buttons-grid" id="cell-phones-buttons">
-                        <a href="https://www.amazon.com/s?k=cell+phones&node=2335752011&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+</a>
-                        <a href="https://www.amazon.com/s?k=cell+phones&node=2335752011&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+</a>
-                        <a href="https://www.amazon.com/s?k=cell+phones&node=2335752011&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+</a>
-                        <a href="https://www.amazon.com/s?k=cell+phones&node=2335752011&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+</a>
-                        <a href="https://www.amazon.com/s?k=cell+phones&node=2335752011&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+</a>
-                        <a href="https://www.amazon.com/s?k=cell+phones&node=2335752011&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+</a>
-                        <a href="https://www.amazon.com/s?k=cell+phones&node=2335752011&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+</a>
-                    </div>
-                    <ul id="cell-phones" class="subcategory-list">
-                        <li><a href="https://www.amazon.com/s?k=smartphones&node=2335752011&tag=allthedisco04-20" target="_blank">Smartphones</a></li>
-                        <li><a href="https://www.amazon.com/s?k=cell+phone+accessories&node=2407749011&tag=allthedisco04-20" target="_blank">Accessories</a></li>
-                    </ul>
-                </li>
-
-                <!-- Men's Clothing -->
-                <li class="category" onclick="toggleSubcategories('mens-clothing')">
-                    <span>Men's Clothing</span>
-                    <div class="discount-buttons-grid" id="mens-clothing-buttons">
-                        <a href="https://www.amazon.com/s?k=men+clothing&node=1040658&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+</a>
-                        <a href="https://www.amazon.com/s?k=men+clothing&node=1040658&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+</a>
-                        <a href="https://www.amazon.com/s?k=men+clothing&node=1040658&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+</a>
-                        <a href="https://www.amazon.com/s?k=men+clothing&node=1040658&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+</a>
-                        <a href="https://www.amazon.com/s?k=men+clothing&node=1040658&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+</a>
-                        <a href="https://www.amazon.com/s?k=men+clothing&node=1040658&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+</a>
-                        <a href="https://www.amazon.com/s?k=men+clothing&node=1040658&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+</a>
-                    </div>
-                    <ul id="mens-clothing" class="subcategory-list">
-                        <li><a href="https://www.amazon.com/s?k=men+shirts&node=1040658&tag=allthedisco04-20" target="_blank">Shirts</a></li>
-                        <li><a href="https://www.amazon.com/s?k=men+pants&node=1040660&tag=allthedisco04-20" target="_blank">Pants</a></li>
-                    </ul>
-                </li>
-
-                <!-- Women's Clothing -->
-                <li class="category" onclick="toggleSubcategories('womens-clothing')">
-                    <span>Women's Clothing</span>
-                    <div class="discount-buttons-grid" id="womens-clothing-buttons">
-                        <a href="https://www.amazon.com/s?k=women+clothing&node=1040660&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+</a>
-                        <a href="https://www.amazon.com/s?k=women+clothing&node=1040660&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+</a>
-                        <a href="https://www.amazon.com/s?k=women+clothing&node=1040660&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+</a>
-                        <a href="https://www.amazon.com/s?k=women+clothing&node=1040660&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+</a>
-                        <a href="https://www.amazon.com/s?k=women+clothing&node=1040660&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+</a>
-                        <a href="https://www.amazon.com/s?k=women+clothing&node=1040660&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+</a>
-                        <a href="https://www.amazon.com/s?k=women+clothing&node=1040660&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+</a>
-                    </div>
-                    <ul id="womens-clothing" class="subcategory-list">
-                        <li><a href="https://www.amazon.com/s?k=women+dresses&node=1040660&tag=allthedisco04-20" target="_blank">Dresses</a></li>
-                        <li><a href="https://www.amazon.com/s?k=women+pants&node=1040662&tag=allthedisco04-20" target="_blank">Pants</a></li>
-                    </ul>
-                </li>
-
-                <!-- Kids' Clothing -->
-                <li class="category" onclick="toggleSubcategories('kids-clothing')">
-                    <span>Kids' Clothing</span>
-                    <div class="discount-buttons-grid" id="kids-clothing-buttons">
-                        <a href="https://www.amazon.com/s?k=kids+clothing&node=1040664&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+</a>
-                        <a href="https://www.amazon.com/s?k=kids+clothing&node=1040664&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+</a>
-                        <a href="https://www.amazon.com/s?k=kids+clothing&node=1040664&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+</a>
-                        <a href="https://www.amazon.com/s?k=kids+clothing&node=1040664&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+</a>
-                        <a href="https://www.amazon.com/s?k=kids+clothing&node=1040664&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+</a>
-                        <a href="https://www.amazon.com/s?k=kids+clothing&node=1040664&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+</a>
-                        <a href="https://www.amazon.com/s?k=kids+clothing&node=1040664&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+</a>
-                    </div>
-                    <ul id="kids-clothing" class="subcategory-list">
-                        <li><a href="https://www.amazon.com/s?k=kids+tops&node=1040664&tag=allthedisco04-20" target="_blank">Tops</a></li>
-                        <li><a href="https://www.amazon.com/s?k=kids+pants&node=1040666&tag=allthedisco04-20" target="_blank">Bottoms</a></li>
-                    </ul>
-                </li>
-
-                <!-- Men's Shoes -->
-                <li class="category" onclick="toggleSubcategories('mens-shoes')">
-                    <span>Men's Shoes</span>
-                    <div class="discount-buttons-grid" id="mens-shoes-buttons">
-                        <a href="https://www.amazon.com/s?k=men+shoes&node=
+        <div class="discount-buttons">
+            <h3>Shop by Discount</h3>
+            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A30-39&tag=allthedisco04-20" target="_blank">30%+ Off</a>
+            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A40-49&tag=allthedisco04-20" target="_blank">40%+ Off</a>
+            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A50-59&tag=allthedisco04-20" target="_blank">50%+ Off</a>
+            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A60-69&tag=allthedisco04-20" target="_blank">60%+ Off</a>
+            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A70-79&tag=allthedisco04-20" target="_blank">70%+ Off</a>
+            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A80-89&tag=allthedisco04-20" target="_blank">80%+ Off</a>
+            <a href="https://www.amazon.com/s?i=all&rh=p_8%3A90-99&tag=allthedisco04-20" target="_blank">90%+ Off</a>
+        </div>
+    </div>
+</body>
+</html>
