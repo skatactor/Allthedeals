@@ -2,6 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 header {
@@ -9,16 +11,20 @@ header {
     background-color: #333;
     color: white;
     padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .search-container {
     text-align: center;
     margin: 20px 0;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
 }
 
 .instruction {
     margin-left: 20px;
     font-size: 14px;
+    color: #666;
 }
 
 .container {
@@ -29,6 +35,7 @@ header {
 .category-list {
     width: 200px;
     border-right: 2px solid #ccc;
+    min-height: 100vh;
 }
 
 .category-list ul {
@@ -43,36 +50,79 @@ header {
     color: white;
     border-radius: 5px;
     margin-bottom: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .category:hover {
     background: #ff9900;
+    transform: scale(1.02);
+}
+
+.discount-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .discount-buttons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .discount-buttons-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.discount-buttons a {
+    padding: 5px 10px;
+    background-color: #ff9900;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.discount-buttons a:hover {
+    background-color: #cc7a00;
+    transform: scale(1.05);
 }
 
 .subcategory-list {
     display: none;
     padding-left: 20px;
     list-style: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.subcategory-list.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .subcategory-list li {
     padding: 5px 0;
+    transition: background-color 0.3s ease;
 }
 
-.discount-buttons {
-    margin-left: 20px;
+.subcategory-list li:hover {
+    background-color: #f0f0f0;
 }
 
-.discount-buttons a {
-    display: inline-block;
-    padding: 10px 15px;
-    margin: 5px;
-    background-color: #ff9900;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.discount-buttons a:hover {
-    background-color: #cc7a00;
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .category-list {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #ccc;
+    }
 }
