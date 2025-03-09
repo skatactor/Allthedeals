@@ -1,11 +1,88 @@
-/* Main Category Styles */
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+}
+
+header {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-container input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #cc7a00;
+}
+
+.instruction {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+}
+
+.category-list {
+    width: 200px;
+    border-right: 2px solid #ccc;
+    min-height: 100vh;
+}
+
+.category-list ul {
+    list-style: none;
+    padding: 0;
+}
+
 .category {
     cursor: pointer;
     padding: 10px;
     background: #444;
     color: white;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -14,7 +91,6 @@
     transform: scale(1.02);
 }
 
-/* Discount Buttons Grid */
 .discount-buttons-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -38,7 +114,6 @@
     transform: scale(1.05);
 }
 
-/* Subcategory Styles */
 .subcategory-list {
     display: none;
     padding-left: 20px;
@@ -65,4 +140,25 @@
 
 .subcategory-list a:hover {
     color: #ff9900;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .category-list {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #ccc;
+    }
+    .discount-buttons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .discount-buttons-grid {
+        grid-template-columns: 1fr;
+    }
 }
