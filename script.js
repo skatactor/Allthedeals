@@ -24,7 +24,6 @@ function searchDeals() {
 
     window.open(url, "_blank");
 }
-
 // Function to get the Amazon node ID for a category
 function getCategoryNode(categoryElement) {
     const categoryName = categoryElement.querySelector('span').textContent.toLowerCase();
