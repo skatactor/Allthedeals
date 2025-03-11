@@ -1,63 +1,34 @@
-document.addEventListener("DOMContentLoaded", function() {
-    function searchDeals(categoryNode = "", discount = "", keyword = "") {
-        let baseURL = "https://www.amazon.com/s?";
-        let params = new URLSearchParams();
+// Search deals by category and discount range
+function searchDealsByCategory(nodeId, discountRange) {
+    const [minDiscount, maxDiscount] = discountRange.split('-');
+    const url = `https://www.amazon.com/s?rh=n%3A${nodeId}%2Cp_n_pct-off-with-tax%3A${minDiscount}00-${minDiscount}99`;
+    window.open(url, '_blank');
+}
 
-        if (keyword) {
-            params.append("k", keyword); // Add search keyword if entered
-        }
+// Search deals from the search bar
+function searchDealsFromBar() {
+    const keyword = document.getElementById("search-box").value.trim();
+    const discount = document.getElementById("discount").value;
+    searchDeals("", discount !== "all" ? discount : "", keyword);
+}
 
-        if (categoryNode) {
-            params.append("n", categoryNode); // Use Amazon category node filtering
-        }
+// Construct URL and open Amazon search results
+function searchDeals(categoryNode = "", discount = "", keyword = "") {
+    let baseURL = "https://www.amazon.com/s?";
+    let params = new URLSearchParams();
 
-        if (discount) {
-            params.append("rh", `p_n_pct-off-with-tax:${discount}00-${discount}99`); // Fix discount range
-        }
-
-        let finalURL = baseURL + params.toString();
-        console.log("🔗 Opening Amazon Search:", finalURL);
-        window.open(finalURL, "_blank");
+    if (keyword) {
+        params.append("k", keyword); // Add search keyword if entered
     }
 
-    window.searchDealsByCategory = function(categoryNode, discount = "") {
-        if (!categoryNode) {
-            console.error("❌ Error: Missing category node!");
-            return;
-        }
+    if (categoryNode) {
+        params.append("n", categoryNode); // Use category node for filtering
+    }
 
-        document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
-        let categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryNode}')"]`);
-        if (categoryElement) {
-            categoryElement.classList.add("active");
-        }
+    if (discount) {
+        params.append("rh", `p_n_pct-off-with-tax:${discount}00-${discount}99`); // Correct discount filter
+    }
 
-        let keyword = document.getElementById("search-box").value.trim();
-        console.log(`🔎 Searching in Category: ${categoryNode} | Discount: ${discount} | Keyword: ${keyword}`);
-
-        searchDeals(categoryNode, discount, keyword);
-    };
-
-    window.searchDealsFromBar = function() {
-        let keyword = document.getElementById("search-box").value.trim();
-        let discount = document.getElementById("discount").value;
-        console.log(`🔎 Searching: Keyword: ${keyword} | Discount: ${discount}`);
-        searchDeals("", discount !== "all" ? discount : "", keyword);
-    };
-
-    window.toggleSubcategories = function(categoryId) {
-        let subcategoryList = document.getElementById(categoryId);
-        let categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryId}')"]`);
-
-        document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
-
-        if (subcategoryList.classList.contains("visible")) {
-            subcategoryList.classList.remove("visible");
-            categoryElement.classList.remove("active");
-        } else {
-            document.querySelectorAll(".subcategory-list").forEach(list => list.classList.remove("visible"));
-            subcategoryList.classList.add("visible");
-            categoryElement.classList.add("active");
-        }
-    };
-});
+    let finalURL = baseURL + params.toString();
+    window.open(finalURL, "_blank");
+}
