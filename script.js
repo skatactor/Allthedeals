@@ -8,11 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (categoryNode) {
-            params.append("bbn", categoryNode); // ✅ Using Browse Node (`bbn=`)
+            params.append("bbn", categoryNode); // ✅ Uses Browse Node (`bbn=`)
         }
 
         if (discount) {
-            params.append("rh", `p_8:${discount}-99`); // ✅ Correctly applies `p_8:60-99`
+            let discountMin = discount.split("-")[0]; // ✅ Fix: Extracts only first part
+            params.append("rh", `p_8:${discountMin}-99`); // ✅ Ensures correct format `p_8:60-99`
         }
 
         if (extraFilters) {
