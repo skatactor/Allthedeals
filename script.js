@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         params.append("s", sorting); // ✅ Sorting preference
 
-        let finalURL = baseURL + params.toString();
+        // ✅ Append Amazon Affiliate Code
+        let finalURL = baseURL + params.toString() + "&tag=allthedisco04-20"; 
+
         console.log("🔗 Opening Amazon Search:", finalURL);
         window.open(finalURL, "_blank");
     }
