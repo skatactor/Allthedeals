@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    function searchDeals(categoryNode = "", discount = "", keyword = "", extraFilters = "") {
+    function searchDeals(categoryNode = "", discount = "", keyword = "", extraFilters = "", sorting = "price-desc-rank") {
         let baseURL = "https://www.amazon.com/s?";
         let params = new URLSearchParams();
 
@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (categoryNode) {
-            params.append("n", categoryNode);
+            params.append("bbn", categoryNode); // ✅ Using Browse Node (`bbn=`)
         }
 
         if (discount) {
-            params.append("rh", `p_8:${discount}-99`); // Fix: Use `p_8` for discount filtering
+            params.append("rh", `p_8:${discount}-99`); // ✅ Correctly applies `p_8:60-99`
         }
 
         if (extraFilters) {
@@ -22,12 +22,14 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
+        params.append("s", sorting); // ✅ Sorting preference
+
         let finalURL = baseURL + params.toString();
         console.log("🔗 Opening Amazon Search:", finalURL);
         window.open(finalURL, "_blank");
     }
 
-    window.searchDealsByCategory = function(categoryNode, discount = "", extraFilters = "") {
+    window.searchDealsByCategory = function(categoryNode, discount = "", extraFilters = "", sorting = "price-desc-rank") {
         if (!categoryNode) {
             console.error("❌ Error: Missing category node!");
             return;
@@ -42,14 +44,14 @@ document.addEventListener("DOMContentLoaded", function() {
         let keyword = document.getElementById("search-box").value.trim();
         console.log(`🔎 Searching in Category: ${categoryNode} | Discount: ${discount} | Filters: ${extraFilters} | Keyword: ${keyword}`);
 
-        searchDeals(categoryNode, discount, keyword, extraFilters);
+        searchDeals(categoryNode, discount, keyword, extraFilters, sorting);
     };
 
     window.searchDealsFromBar = function() {
         let keyword = document.getElementById("search-box").value.trim();
         let discount = document.getElementById("discount").value;
         console.log(`🔎 Searching: Keyword: ${keyword} | Discount: ${discount}`);
-        searchDeals("", discount !== "all" ? discount : "", keyword, "");
+        searchDeals("", discount !== "all" ? discount : "", keyword, "", "price-desc-rank");
     };
 
     window.toggleSubcategories = function(categoryId) {
@@ -59,12 +61,4 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
 
         if (subcategoryList.classList.contains("visible")) {
-            subcategoryList.classList.remove("visible");
-            categoryElement.classList.remove("active");
-        } else {
-            document.querySelectorAll(".subcategory-list").forEach(list => list.classList.remove("visible"));
-            subcategoryList.classList.add("visible");
-            categoryElement.classList.add("active");
-        }
-    };
-});
+            sub
