@@ -47,11 +47,17 @@ header {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .search-container button:hover {
     background-color: #cc7a00;
+    transform: scale(1.05);
+}
+
+.search-container button:focus {
+    outline: 2px solid #333;
+    outline-offset: 2px;
 }
 
 .instruction {
@@ -69,6 +75,9 @@ header {
     width: 200px;
     border-right: 2px solid #ccc;
     min-height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
 }
 
 .category-list ul {
@@ -111,12 +120,18 @@ header {
     border-radius: 5px;
     font-size: 14px;
     text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .discount-buttons-grid a:hover {
     background-color: #cc7a00;
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.discount-buttons-grid a:focus {
+    outline: 2px solid #333;
+    outline-offset: 2px;
 }
 
 .subcategory-list {
@@ -124,10 +139,16 @@ header {
     padding-left: 20px;
     list-style: none;
     margin-top: 10px;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
 }
 
 .subcategory-list.active {
     display: block;
+    max-height: 500px; /* Adjust based on content */
+    opacity: 1;
 }
 
 .subcategory-list li {
@@ -156,6 +177,7 @@ header {
         width: 100%;
         border-right: none;
         border-bottom: 2px solid #ccc;
+        position: static;
     }
     .discount-buttons-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -166,4 +188,19 @@ header {
     .discount-buttons-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
