@@ -15,7 +15,17 @@
     <div class="search-container">
         <h2>Search for a Deal</h2>
         <input type="text" id="search-box" placeholder="Enter product name...">
-        <button onclick="searchDeals()">Find Deals</button>
+        <select id="discount">
+            <option value="all">All Discounts</option>
+            <option value="30-39">30%+ Off</option>
+            <option value="40-49">40%+ Off</option>
+            <option value="50-59">50%+ Off</option>
+            <option value="60-69">60%+ Off</option>
+            <option value="70-79">70%+ Off</option>
+            <option value="80-89">80%+ Off</option>
+            <option value="90-99">90%+ Off</option>
+        </select>
+        <button onclick="searchDealsFromBar()">Find Deals</button>
     </div>
 
     <div class="instruction">
@@ -45,41 +55,44 @@
                     </ul>
                 </li>
 
-                <!-- Beauty -->
-                <li class="category" onclick="toggleSubcategories('beauty')">
-                    <span>Beauty</span>
+                <!-- Electronics -->
+                <li class="category" onclick="toggleSubcategories('electronics')">
+                    <span>Electronics</span>
                     <div class="discount-buttons-grid">
-                        <button onclick="searchDealsByCategory('beauty', '30-39')">30%+</button>
-                        <button onclick="searchDealsByCategory('beauty', '40-49')">40%+</button>
-                        <button onclick="searchDealsByCategory('beauty', '50-59')">50%+</button>
-                        <button onclick="searchDealsByCategory('beauty', '60-69')">60%+</button>
-                        <button onclick="searchDealsByCategory('beauty', '70-79')">70%+</button>
-                        <button onclick="searchDealsByCategory('beauty', '80-89')">80%+</button>
-                        <button onclick="searchDealsByCategory('beauty', '90-99')">90%+</button>
+                        <button onclick="searchDealsByCategory('electronics', '30-39')">30%+</button>
+                        <button onclick="searchDealsByCategory('electronics', '40-49')">40%+</button>
+                        <button onclick="searchDealsByCategory('electronics', '50-59')">50%+</button>
+                        <button onclick="searchDealsByCategory('electronics', '60-69')">60%+</button>
+                        <button onclick="searchDealsByCategory('electronics', '70-79')">70%+</button>
+                        <button onclick="searchDealsByCategory('electronics', '80-89')">80%+</button>
+                        <button onclick="searchDealsByCategory('electronics', '90-99')">90%+</button>
                     </div>
-                    <ul id="beauty" class="subcategory-list">
-                        <li onclick="searchDealsByCategory('makeup')">Makeup</li>
-                        <li onclick="searchDealsByCategory('skincare')">Skincare</li>
-                        <li onclick="searchDealsByCategory('hair-care')">Hair Care</li>
+                    <ul id="electronics" class="subcategory-list">
+                        <li onclick="searchDealsByCategory('headphones')">Headphones</li>
+                        <li onclick="searchDealsByCategory('laptops')">Laptops</li>
+                        <li onclick="searchDealsByCategory('smartphones')">Smartphones</li>
+                        <li onclick="searchDealsByCategory('tablets')">Tablets</li>
+                        <li onclick="searchDealsByCategory('tvs')">TVs</li>
                     </ul>
                 </li>
 
-                <!-- Men's Clothing -->
-                <li class="category" onclick="toggleSubcategories('mens-clothing')">
-                    <span>Men's Clothing</span>
+                <!-- Books -->
+                <li class="category" onclick="toggleSubcategories('books')">
+                    <span>Books</span>
                     <div class="discount-buttons-grid">
-                        <button onclick="searchDealsByCategory('mens-clothing', '30-39')">30%+</button>
-                        <button onclick="searchDealsByCategory('mens-clothing', '40-49')">40%+</button>
-                        <button onclick="searchDealsByCategory('mens-clothing', '50-59')">50%+</button>
-                        <button onclick="searchDealsByCategory('mens-clothing', '60-69')">60%+</button>
-                        <button onclick="searchDealsByCategory('mens-clothing', '70-79')">70%+</button>
-                        <button onclick="searchDealsByCategory('mens-clothing', '80-89')">80%+</button>
-                        <button onclick="searchDealsByCategory('mens-clothing', '90-99')">90%+</button>
+                        <button onclick="searchDealsByCategory('books', '30-39')">30%+</button>
+                        <button onclick="searchDealsByCategory('books', '40-49')">40%+</button>
+                        <button onclick="searchDealsByCategory('books', '50-59')">50%+</button>
+                        <button onclick="searchDealsByCategory('books', '60-69')">60%+</button>
+                        <button onclick="searchDealsByCategory('books', '70-79')">70%+</button>
+                        <button onclick="searchDealsByCategory('books', '80-89')">80%+</button>
+                        <button onclick="searchDealsByCategory('books', '90-99')">90%+</button>
                     </div>
-                    <ul id="mens-clothing" class="subcategory-list">
-                        <li onclick="searchDealsByCategory('mens-shirts')">Shirts</li>
-                        <li onclick="searchDealsByCategory('mens-pants')">Pants</li>
-                        <li onclick="searchDealsByCategory('mens-shoes')">Shoes</li>
+                    <ul id="books" class="subcategory-list">
+                        <li onclick="searchDealsByCategory('graphic-novels')">Graphic Novels</li>
+                        <li onclick="searchDealsByCategory('mystery-thrillers')">Mystery & Thrillers</li>
+                        <li onclick="searchDealsByCategory('science-fiction')">Science Fiction</li>
+                        <li onclick="searchDealsByCategory('fantasy')">Fantasy</li>
                     </ul>
                 </li>
             </ul>
@@ -87,25 +100,10 @@
     </div>
 
     <script>
-        function searchDealsByCategory(category, discount) {
-            document.querySelectorAll('.category').forEach(cat => cat.classList.remove('active'));
-            document.querySelector(`[onclick="toggleSubcategories('${category}')"]`).classList.add('active');
-            searchDeals(category, discount);
-        }
-
-        function toggleSubcategories(categoryId) {
-            const subcategoryList = document.getElementById(categoryId);
-            const categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryId}')"]`);
-
-            document.querySelectorAll('.category').forEach(cat => cat.classList.remove('active'));
-
-            if (subcategoryList.style.display === "none" || subcategoryList.style.display === "") {
-                subcategoryList.style.display = "block";
-                categoryElement.classList.add('active');
-            } else {
-                subcategoryList.style.display = "none";
-                categoryElement.classList.remove('active');
-            }
+        function searchDealsFromBar() {
+            let keyword = document.getElementById("search-box").value.trim();
+            let discount = document.getElementById("discount").value;
+            searchDeals("", discount !== "all" ? discount : "", keyword);
         }
     </script>
 </body>
