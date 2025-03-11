@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    function searchDeals(category = "", discount = "", keyword = "") {
+    function searchDeals(categoryNode = "", discount = "", keyword = "") {
         let baseURL = "https://www.amazon.com/s?";
         let params = new URLSearchParams();
 
@@ -7,26 +7,26 @@ document.addEventListener("DOMContentLoaded", function() {
             params.append("k", keyword); // Add search keyword if entered
         }
 
-        if (category) {
-            params.append("i", category); // Filter by category if selected
+        if (categoryNode) {
+            params.append("n", categoryNode); // Use category node for filtering
         }
 
         if (discount) {
-            params.append("rh", `p_8:${discount}`); // Apply discount filter
+            params.append("rh", `p_n_pct-off-with-tax:${discount}00-${discount}99`); // Correct discount filter
         }
 
         let finalURL = baseURL + params.toString();
         window.open(finalURL, "_blank");
     }
 
-    window.searchDealsByCategory = function(category, discount = "") {
+    window.searchDealsByCategory = function(categoryNode, discount = "") {
         document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
-        let categoryElement = document.querySelector(`[onclick="toggleSubcategories('${category}')"]`);
+        let categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryNode}')"]`);
         if (categoryElement) {
             categoryElement.classList.add("active");
         }
         let keyword = document.getElementById("search-box").value.trim();
-        searchDeals(category, discount, keyword);
+        searchDeals(categoryNode, discount, keyword);
     };
 
     window.searchDealsFromBar = function() {
@@ -41,12 +41,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
 
-        if (subcategoryList.style.display === "none" || subcategoryList.style.display === "") {
-            subcategoryList.style.display = "block";
-            categoryElement.classList.add("active");
-        } else {
-            subcategoryList.style.display = "none";
+        if (subcategoryList.classList.contains("visible")) {
+            subcategoryList.classList.remove("visible");
             categoryElement.classList.remove("active");
+        } else {
+            document.querySelectorAll(".subcategory-list").forEach(list => list.classList.remove("visible"));
+            subcategoryList.classList.add("visible");
+            categoryElement.classList.add("active");
         }
     };
 });
