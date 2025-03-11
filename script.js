@@ -61,4 +61,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
 
         if (subcategoryList.classList.contains("visible")) {
-            sub
+            subcategoryList.classList.remove("visible");
+            categoryElement.classList.remove("active");
+        } else {
+            document.querySelectorAll(".subcategory-list").forEach(list => list.classList.remove("visible"));
+            subcategoryList.classList.add("visible");
+            categoryElement.classList.add("active");
+        }
+    };
+});
