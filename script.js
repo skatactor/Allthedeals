@@ -1,89 +1,62 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Function to search deals
-    function searchDeals(categoryNode = "", discount = "", keyword = "", extraFilters = "") {
+document.addEventListener("DOMContentLoaded", function() {
+    function searchDeals(categoryNode = "", discount = "", keyword = "") {
         let baseURL = "https://www.amazon.com/s?";
         let params = new URLSearchParams();
 
-        // Add keyword if provided
         if (keyword) {
-            params.append("k", keyword);
+            params.append("k", keyword); // Add search keyword if entered
         }
 
-        // Add category node if provided
         if (categoryNode) {
-            params.append("n", categoryNode);
+            params.append("n", categoryNode); // Use Amazon category node filtering
         }
 
-        // Add discount range if provided
         if (discount) {
-            let discountMin = parseInt(discount) * 100; // Convert 60 → 6000
-            let discountMax = discountMin + 99; // Convert 6000 → 6099
+            let discountMin = parseInt(discount) * 100; // Convert 90 → 9000
+            let discountMax = discountMin + 999; // Convert 9000 → 9999
             params.append("rh", `p_n_pct-off-with-tax:${discountMin}-${discountMax}`);
         }
 
-        // Add extra filters if provided
-        if (extraFilters) {
-            extraFilters.split("&").forEach(filter => {
-                let [key, value] = filter.split("=");
-                params.append(key, value);
-            });
-        }
-
-        // Construct the final URL
         let finalURL = baseURL + params.toString();
         console.log("🔗 Opening Amazon Search:", finalURL);
         window.open(finalURL, "_blank");
     }
 
-    // Function to search deals by category
-    window.searchDealsByCategory = function (categoryNode, discount = "", extraFilters = "") {
+    window.searchDealsByCategory = function(categoryNode, discount = "") {
         if (!categoryNode) {
             console.error("❌ Error: Missing category node!");
             return;
         }
 
-        // Remove active class from all categories
         document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
-
-        // Add active class to the selected category
         let categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryNode}')"]`);
         if (categoryElement) {
             categoryElement.classList.add("active");
         }
 
-        // Get the keyword from the search box
         let keyword = document.getElementById("search-box").value.trim();
-        console.log(`🔎 Searching in Category: ${categoryNode} | Discount: ${discount} | Filters: ${extraFilters} | Keyword: ${keyword}`);
+        console.log(`🔎 Searching in Category: ${categoryNode} | Discount: ${discount} | Keyword: ${keyword}`);
 
-        // Call the searchDeals function
-        searchDeals(categoryNode, discount, keyword, extraFilters);
+        searchDeals(categoryNode, discount, keyword);
     };
 
-    // Function to search deals from the search bar
-    window.searchDealsFromBar = function () {
-        // Get the keyword and discount from the search bar
+    window.searchDealsFromBar = function() {
         let keyword = document.getElementById("search-box").value.trim();
         let discount = document.getElementById("discount").value;
         console.log(`🔎 Searching: Keyword: ${keyword} | Discount: ${discount}`);
-
-        // Call the searchDeals function
-        searchDeals("", discount !== "all" ? discount : "", keyword, "");
+        searchDeals("", discount !== "all" ? discount : "", keyword);
     };
 
-    // Function to toggle subcategories
-    window.toggleSubcategories = function (categoryId) {
+    window.toggleSubcategories = function(categoryId) {
         let subcategoryList = document.getElementById(categoryId);
         let categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryId}')"]`);
 
-        // Remove active class from all categories
         document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
 
-        // Toggle the visibility of the subcategory list
         if (subcategoryList.classList.contains("visible")) {
             subcategoryList.classList.remove("visible");
             categoryElement.classList.remove("active");
         } else {
-            // Hide all other subcategory lists
             document.querySelectorAll(".subcategory-list").forEach(list => list.classList.remove("visible"));
             subcategoryList.classList.add("visible");
             categoryElement.classList.add("active");
