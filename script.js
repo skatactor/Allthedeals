@@ -9,7 +9,7 @@ function toggleSubcategories(categoryId) {
 // Search deals by category and discount range
 function searchDealsByCategory(nodeId, discountRange) {
     const [minDiscount, maxDiscount] = discountRange.split('-');
-    const url = `https://www.amazon.com/s?rh=n%3A${nodeId}%2Cp_n_pct-off-with-tax%3A${minDiscount}00-${maxDiscount}00`;
+    const url = `https://www.amazon.com/s?rh=n%3A${nodeId}%2Cp_n_pct-off-with-tax%3A${minDiscount}00-${minDiscount}99`;
     window.open(url, '_blank');
 }
 
@@ -20,7 +20,7 @@ function searchDealsFromBar() {
     searchDeals("", discount !== "all" ? discount : "", keyword);
 }
 
-// Optional: Define searchDeals if needed
+// Construct URL and open Amazon search results
 function searchDeals(categoryNode = "", discount = "", keyword = "") {
     let baseURL = "https://www.amazon.com/s?";
     let params = new URLSearchParams();
