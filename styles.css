@@ -112,24 +112,25 @@ header {
     margin-top: 10px;
 }
 
-.discount-buttons-grid a {
+.discount-buttons-grid button {
     padding: 10px;
     background-color: #ff9900;
     color: white;
-    text-decoration: none;
+    border: none;
     border-radius: 5px;
     font-size: 14px;
     text-align: center;
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.discount-buttons-grid a:hover {
+.discount-buttons-grid button:hover {
     background-color: #cc7a00;
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.discount-buttons-grid a:focus {
+.discount-buttons-grid button:focus {
     outline: 2px solid #333;
     outline-offset: 2px;
 }
@@ -145,7 +146,7 @@ header {
     opacity: 0;
 }
 
-.subcategory-list.active {
+.subcategory-list.visible {
     display: block;
     max-height: 500px; /* Adjust based on content */
     opacity: 1;
