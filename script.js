@@ -1,20 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
-    function searchDeals(categoryNode = "", discount = "", keyword = "") {
+    function searchDeals(categoryNode = "", discount = "", keyword = "", extraFilters = "") {
         let baseURL = "https://www.amazon.com/s?";
         let params = new URLSearchParams();
 
         if (keyword) {
-            params.append("k", keyword); // Add search keyword if entered
+            params.append("k", keyword);
         }
 
         if (categoryNode) {
-            params.append("n", categoryNode); // Use Amazon category node filtering
+            params.append("n", categoryNode);
         }
 
         if (discount) {
-            let discountMin = parseInt(discount) * 100; // Convert 90 → 9000
-            let discountMax = discountMin + 999; // Convert 9000 → 9999
-            params.append("rh", `p_n_pct-off-with-tax:${discountMin}-${discountMax}`);
+            params.append("rh", `p_8:${discount}-99`); // Fix: Use `p_8` for discount filtering
+        }
+
+        if (extraFilters) {
+            extraFilters.split("&").forEach(filter => {
+                let [key, value] = filter.split("=");
+                params.append(key, value);
+            });
         }
 
         let finalURL = baseURL + params.toString();
@@ -22,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.open(finalURL, "_blank");
     }
 
-    window.searchDealsByCategory = function(categoryNode, discount = "") {
+    window.searchDealsByCategory = function(categoryNode, discount = "", extraFilters = "") {
         if (!categoryNode) {
             console.error("❌ Error: Missing category node!");
             return;
@@ -35,16 +40,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         let keyword = document.getElementById("search-box").value.trim();
-        console.log(`🔎 Searching in Category: ${categoryNode} | Discount: ${discount} | Keyword: ${keyword}`);
+        console.log(`🔎 Searching in Category: ${categoryNode} | Discount: ${discount} | Filters: ${extraFilters} | Keyword: ${keyword}`);
 
-        searchDeals(categoryNode, discount, keyword);
+        searchDeals(categoryNode, discount, keyword, extraFilters);
     };
 
     window.searchDealsFromBar = function() {
         let keyword = document.getElementById("search-box").value.trim();
         let discount = document.getElementById("discount").value;
         console.log(`🔎 Searching: Keyword: ${keyword} | Discount: ${discount}`);
-        searchDeals("", discount !== "all" ? discount : "", keyword);
+        searchDeals("", discount !== "all" ? discount : "", keyword, "");
     };
 
     window.toggleSubcategories = function(categoryId) {
