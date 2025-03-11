@@ -1,37 +1,49 @@
 
-// Function to handle search bar
+// Function to handle search based on category and discount
 function searchDeals() {
+    const query = document.getElementById('search-box').value.trim();
     const discount = document.getElementById('discount').value;
     const selectedCategory = document.querySelector('.category.active');
 
-    if (!selectedCategory) {
-        alert("Please select a category before searching.");
-        return;
+    let url = "https://www.amazon.com/s?";
+
+    // If a search term is provided, search all of Amazon
+    if (query) {
+        url += `k=${encodeURIComponent(query)}`;
     }
 
-    const categoryNode = getCategoryNode(selectedCategory);
-    if (!categoryNode) {
-        alert("No valid category selected.");
-        return;
+    // If a category is selected, filter within that category
+    if (selectedCategory) {
+        const categoryNode = getCategoryNode(selectedCategory);
+        const categoryIndex = getCategoryIndex(selectedCategory);
+
+        if (categoryIndex) {
+            url += `&i=${categoryIndex}`;
+        } else if (categoryNode) {
+            url += `&node=${categoryNode}`;
+        }
     }
 
-    let url = `https://www.amazon.com/s?node=${categoryNode}&tag=allthedisco04-20`;
-
-    // Add discount filter if selected
+    // Apply the correct discount filter dynamically
     if (discount !== "all") {
-        url += `&rh=p_8%3A${discount}`;
+        const discountFilter = getDiscountFilter(selectedCategory);
+        url += `&rh=${discountFilter}%3A${discount}`;
     }
 
+    url += "&tag=allthedisco04-20"; // Affiliate tag
+
+    console.log(`Opening URL: ${url}`); // Debugging log
     window.open(url, "_blank");
 }
+
 // Function to get the Amazon node ID for a category
 function getCategoryNode(categoryElement) {
     const categoryName = categoryElement.querySelector('span').textContent.toLowerCase();
     const categoryNodes = {
+        "graphic novels": "4366",
         "baby": "165796011",
         "beauty": "3760911",
         "books": "283155",
-        "graphic novels": "4366",
         "cell phones": "2335752011",
         "men's clothing": "1040658",
         "women's clothing": "1040660",
@@ -51,10 +63,36 @@ function getCategoryNode(categoryElement) {
         "sports & outdoors": "3375251",
         "tools & home improvement": "228013",
         "toys & games": "165793011",
-        "video games": "468642"
+        "video games": "468642",
+        "men's fashion": "7147441011" // Added Men's Fashion node
     };
 
-    return categoryNodes[categoryName] || "";
+    return categoryNodes[categoryName] || null;
+}
+
+// Function to get the Amazon index for a category (i=)
+function getCategoryIndex(categoryElement) {
+    const categoryName = categoryElement.querySelector('span').textContent.toLowerCase();
+    const categoryIndexes = {
+        "books": "stripbooks",
+        "baby": "baby-products",
+        "electronics": "electronics",
+        "beauty": "beauty",
+        "home & kitchen": "home-garden"
+    };
+
+    return categoryIndexes[categoryName] || null;
+}
+
+// Function to determine the correct discount filter parameter dynamically
+function getDiscountFilter(selectedCategory) {
+    const categoryIndex = selectedCategory ? getCategoryIndex(selectedCategory) : null;
+    const categoriesUsingP75 = ["stripbooks", "baby-products", "beauty", "home-garden"];
+    
+    if (categoryIndex && categoriesUsingP75.includes(categoryIndex)) {
+        return "p_75";
+    }
+    return "p_8"; // Default to p_8 for most categories
 }
 
 // Function to toggle subcategories and highlight the selected category
