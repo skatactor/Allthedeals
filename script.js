@@ -13,26 +13,25 @@ document.addEventListener("DOMContentLoaded", function() {
         // Toggle visibility: If it was hidden, show it; otherwise, hide it
         subcategoryList.style.display = isVisible ? "none" : "block";
 
-        // Store expanded state in localStorage
-        localStorage.setItem("expandedCategory", isVisible ? "" : categoryId);
+        // Update active class for styling
+        document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
+        if (!isVisible) {
+            let categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryId}')"]`);
+            if (categoryElement) {
+                categoryElement.classList.add("active");
+            }
+        }
     }
 
-    // Ensure all subcategories start hidden when the page loads, except for the last expanded one
+    // Ensure all subcategories start hidden when the page loads
     document.querySelectorAll(".subcategory-list").forEach(sub => {
         sub.style.display = "none";
     });
 
-    let expandedCategory = localStorage.getItem("expandedCategory");
-    if (expandedCategory) {
-        let expandedElement = document.getElementById(expandedCategory);
-        if (expandedElement) {
-            expandedElement.style.display = "block";
-        }
-    }
-
     // Attach toggle event to each category item
     document.querySelectorAll(".category").forEach(category => {
-        category.addEventListener("click", function() {
+        category.addEventListener("click", function(event) {
+            event.stopPropagation(); // Prevent bubbling issues
             let categoryId = this.getAttribute("onclick").match(/'([^']+)'/)[1];
             toggleSubcategories(categoryId);
         });
