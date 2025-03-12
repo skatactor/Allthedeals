@@ -169,10 +169,21 @@
                     </ul>
                 </li>
                 <!-- Books -->
-                <li class="category" onclick="toggleSubcategories('books')">
-                    <span>Books</span>
+                 <li class="category" onclick="toggleSubcategories('books')">
+                    <span>▶ Books</span>
                     <div class="discount-buttons-grid">
-                             <button onclick="searchDealsByCategory('4366', '30-99')">30%+</button>
+                        <button onclick="searchDealsByCategory('283155', '30-99')">30%+</button>
+                        <button onclick="searchDealsByCategory('283155', '40-99')">40%+</button>
+                        <button onclick="searchDealsByCategory('283155', '50-99')">50%+</button>
+                        <button onclick="searchDealsByCategory('283155', '60-99')">60%+</button>
+                        <button onclick="searchDealsByCategory('283155', '70-99')">70%+</button>
+                        <button onclick="searchDealsByCategory('283155', '80-99')">80%+</button>
+                        <button onclick="searchDealsByCategory('283155', '90-99')">90%+</button>
+                    </div>
+                    <ul id="books" class="subcategory-list">
+                        <li onclick="toggleSubcategories('graphic-novels')">▶ Graphic Novels
+                            <div class="discount-buttons-grid">
+                                <button onclick="searchDealsByCategory('4366', '30-99')">30%+</button>
                                 <button onclick="searchDealsByCategory('4366', '40-99')">40%+</button>
                                 <button onclick="searchDealsByCategory('4366', '50-99')">50%+</button>
                                 <button onclick="searchDealsByCategory('4366', '60-99')">60%+</button>
@@ -201,6 +212,17 @@
                                 <button onclick="searchDealsByCategory('18', '70-99')">70%+</button>
                                 <button onclick="searchDealsByCategory('18', '80-99')">80%+</button>
                                 <button onclick="searchDealsByCategory('18', '90-99')">90%+</button>
+                            </div>
+                        </li>
+                        <li onclick="toggleSubcategories('childrens-books')">▶ Children’s Books
+                            <div class="discount-buttons-grid">
+                                <button onclick="searchDealsByCategory('4', '30-99')">30%+</button>
+                                <button onclick="searchDealsByCategory('4', '40-99')">40%+</button>
+                                <button onclick="searchDealsByCategory('4', '50-99')">50%+</button>
+                                <button onclick="searchDealsByCategory('4', '60-99')">60%+</button>
+                                <button onclick="searchDealsByCategory('4', '70-99')">70%+</button>
+                                <button onclick="searchDealsByCategory('4', '80-99')">80%+</button>
+                                <button onclick="searchDealsByCategory('4', '90-99')">90%+</button>
                            </div>
                         </li>
                     </ul>
