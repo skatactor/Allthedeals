@@ -12,12 +12,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Toggle visibility: If it was hidden, show it; otherwise, hide it
         subcategoryList.style.display = isVisible ? "none" : "block";
+
+        // Store expanded state in localStorage
+        localStorage.setItem("expandedCategory", isVisible ? "" : categoryId);
     }
 
-    // Ensure all subcategories start hidden when the page loads
+    // Ensure all subcategories start hidden when the page loads, except for the last expanded one
     document.querySelectorAll(".subcategory-list").forEach(sub => {
         sub.style.display = "none";
     });
+
+    let expandedCategory = localStorage.getItem("expandedCategory");
+    if (expandedCategory) {
+        let expandedElement = document.getElementById(expandedCategory);
+        if (expandedElement) {
+            expandedElement.style.display = "block";
+        }
+    }
 
     // Attach toggle event to each category item
     document.querySelectorAll(".category").forEach(category => {
