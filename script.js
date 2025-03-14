@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.open(finalURL, "_blank");
     }
 
-    window.searchDealsByCategory = function(categoryNode, discount = "", extraFilters = "", sorting = "price-desc-rank") {
+    window.searchDealsByCategory = function(categoryNode, discount = "", extraFilters = "", sorting = "price-asc-rank") {
         if (!categoryNode) {
             console.error("❌ Error: Missing category node!");
             return;
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let keyword = document.getElementById("search-box").value.trim();
         let discount = document.getElementById("discount").value;
         console.log(`🔎 Searching: Keyword: ${keyword} | Discount: ${discount}`);
-        searchDeals("", discount !== "all" ? discount : "", keyword, "", "price-desc-rank");
+        searchDeals("", discount !== "all" ? discount : "", keyword, "", "price-asc-rank");
     };
 
     window.toggleSubcategories = function(categoryId) {
