@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const baseURL = "https://www.amazon.com/s?";
         const params = new URLSearchParams();
 
-        if (keyword) params.append("k", keyword);
-        if (categoryNode) params.append("bbn", categoryNode);
+        if (keyword) {
+            params.append("k", keyword);
+        }
 
-        // Build initial RH filters
         let rh = "";
 
         // Discount filter
@@ -15,19 +15,25 @@ document.addEventListener("DOMContentLoaded", function () {
             rh += `p_8:${discountMin}-99`;
         }
 
-        // Exclude Kindle in book categories
+        // Add category to lock results correctly
+        if (categoryNode) {
+            params.append("bbn", categoryNode); // Needed for Amazon category refinement
+            rh += rh ? `,n:${categoryNode}` : `n:${categoryNode}`; // Category node required in rh
+        }
+
+        // Kindle exclusion for book-related categories
         const bookNodes = ["283155", "4366", "16272", "18", "4"];
         if (bookNodes.includes(categoryNode)) {
-            rh += rh ? `,n:!154606011` : `n:!154606011`;
+            rh += `,n:!154606011`; // Exclude Kindle
         }
 
-        // Prime filter (if checkbox exists and is checked)
+        // Prime-only filter
         const primeChecked = document.getElementById("prime-only")?.checked;
         if (primeChecked) {
-            rh += rh ? `,p_85:2470955011` : `p_85:2470955011`;
+            rh += `,p_85:2470955011`; // Prime-only filter
         }
 
-        // Extra filters (from URL style e.g. "someKey=val&anotherKey=val")
+        // Extra filters
         if (extraFilters) {
             extraFilters.split("&").forEach(pair => {
                 const [key, value] = pair.split("=");
@@ -36,8 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (rh) params.append("rh", rh);
-
         params.append("s", sorting);
+
         const finalURL = `${baseURL}${params.toString()}&tag=allthedisco04-20`;
 
         console.log("🔗 Opening Amazon Search:", finalURL);
@@ -84,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // Prevent category toggle when clicking discount buttons
+    // Prevent button clicks from toggling subcategories
     document.querySelectorAll(".discount-buttons-grid button").forEach(btn => {
         btn.addEventListener("click", event => event.stopPropagation());
     });
