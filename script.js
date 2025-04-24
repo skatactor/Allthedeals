@@ -5,16 +5,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (keyword) params.append("k", keyword);
         if (categoryNode) params.append("bbn", categoryNode);
+
+        // Build initial RH filters
+        let rh = "";
+
+        // Discount filter
         if (discount) {
             const discountMin = discount.split("-")[0];
-            params.append("rh", `p_8:${discountMin}-99`);
+            rh += `p_8:${discountMin}-99`;
         }
+
+        // Exclude Kindle in book categories
+        const bookNodes = ["283155", "4366", "16272", "18", "4"];
+        if (bookNodes.includes(categoryNode)) {
+            rh += rh ? `,n:!154606011` : `n:!154606011`;
+        }
+
+        // Prime filter (if checkbox exists and is checked)
+        const primeChecked = document.getElementById("prime-only")?.checked;
+        if (primeChecked) {
+            rh += rh ? `,p_85:2470955011` : `p_85:2470955011`;
+        }
+
+        // Extra filters (from URL style e.g. "someKey=val&anotherKey=val")
         if (extraFilters) {
             extraFilters.split("&").forEach(pair => {
                 const [key, value] = pair.split("=");
                 params.append(key, value);
             });
         }
+
+        if (rh) params.append("rh", rh);
 
         params.append("s", sorting);
         const finalURL = `${baseURL}${params.toString()}&tag=allthedisco04-20`;
@@ -23,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.open(finalURL, "_blank");
     }
 
-    window.searchDealsByCategory = function (categoryNode, discount = "", extraFilters = "", sorting = "price-asc-rank") {
+    window.searchDealsByCategory = function (categoryNode, discount = "", extraFilters = "", sorting = "price-desc-rank") {
         if (!categoryNode) {
             console.error("❌ Missing category node!");
             return;
@@ -34,15 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (categoryElement) categoryElement.classList.add("active");
 
         const keyword = document.getElementById("search-box").value.trim();
-        console.log(`🔎 Category: ${categoryNode} | Discount: ${discount} | Keyword: ${keyword}`);
         searchDeals(categoryNode, discount, keyword, extraFilters, sorting);
     };
 
     window.searchDealsFromBar = function () {
         const keyword = document.getElementById("search-box").value.trim();
         const discount = document.getElementById("discount").value;
-        console.log(`🔎 Bar Search | Keyword: ${keyword} | Discount: ${discount}`);
-        searchDeals("", discount !== "all" ? discount : "", keyword, "", "price-asc-rank");
+        const sorting = "price-desc-rank";
+        searchDeals("", discount !== "all" ? discount : "", keyword, "", sorting);
     };
 
     window.toggleSubcategories = function (categoryId) {
@@ -64,10 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // 🔒 Prevent button clicks from toggling subcategories
+    // Prevent category toggle when clicking discount buttons
     document.querySelectorAll(".discount-buttons-grid button").forEach(btn => {
-        btn.addEventListener("click", event => {
-            event.stopPropagation();
-        });
+        btn.addEventListener("click", event => event.stopPropagation());
     });
 });
