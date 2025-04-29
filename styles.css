@@ -146,17 +146,15 @@ header {
   padding-left: 20px;
   list-style: none;
   margin-top: 10px;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  max-height: 0;
-  overflow: hidden;
   opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .subcategory-list.visible {
   display: block;
-  max-height: 500px;
   opacity: 1;
 }
+
 
 .subcategory-list li {
   padding: 10px 0;
