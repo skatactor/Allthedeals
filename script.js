@@ -67,23 +67,30 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   window.toggleSubcategories = function (categoryId) {
-    const subcategoryList = document.getElementById(categoryId);
-    const categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryId}')"]`);
+  const subcategoryList = document.getElementById(categoryId);
+  const categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryId}')"]`);
 
-    if (!subcategoryList) {
-      console.error(`❌ No subcategory list for: ${categoryId}`);
-      return;
-    }
+  if (!subcategoryList) {
+    console.error(`❌ No subcategory list for: ${categoryId}`);
+    return;
+  }
 
-    document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
+  // 🔁 Smooth scroll the clicked thing into view
+  categoryElement?.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    if (subcategoryList.classList.contains("visible")) {
-      subcategoryList.classList.remove("visible");
-      categoryElement.classList.remove("active");
-    } else {
-      document.querySelectorAll(".subcategory-list").forEach(list => list.classList.remove("visible"));
-      subcategoryList.classList.add("visible");
-      categoryElement.classList.add("active");
-    }
+  // 🔁 Close all subcategories first
+  document.querySelectorAll(".subcategory-list").forEach(list => list.classList.remove("visible"));
+  document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
+
+  // 🔁 Toggle this one
+  if (subcategoryList.classList.contains("visible")) {
+    subcategoryList.classList.remove("visible");
+    categoryElement?.classList.remove("active");
+  } else {
+    subcategoryList.classList.add("visible");
+    categoryElement?.classList.add("active");
+  }
+};
+
   };
 });
