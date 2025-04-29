@@ -169,9 +169,19 @@
   </ul>
 </li>
 
-<!-- 👗 Women's Clothing -->
+<!-- 👗 Women’s Clothing -->
 <li class="category" onclick="toggleSubcategories('womens-clothing')">
   <span>▶ Women's Clothing</span>
+  <div class="discount-buttons-grid">
+    <button onclick="searchDealsByCategory('1045024')">All Discounts</button>
+    <button onclick="searchDealsByCategory('1045024', '30-99')">30%+</button>
+    <button onclick="searchDealsByCategory('1045024', '40-99')">40%+</button>
+    <button onclick="searchDealsByCategory('1045024', '50-99')">50%+</button>
+    <button onclick="searchDealsByCategory('1045024', '60-99')">60%+</button>
+    <button onclick="searchDealsByCategory('1045024', '70-99')">70%+</button>
+    <button onclick="searchDealsByCategory('1045024', '80-99')">80%+</button>
+    <button onclick="searchDealsByCategory('1045024', '90-99')">90%+</button>
+  </div>
   <ul id="womens-clothing" class="subcategory-list">
     <li onclick="toggleSubcategories('womens-dresses')">▶ Dresses
       <div class="discount-buttons-grid">
@@ -197,8 +207,21 @@
         <button onclick="searchDealsByCategory('679337011', '90-99')">90%+</button>
       </div>
     </li>
+    <li onclick="toggleSubcategories('womens-handbags')">▶ Handbags
+      <div class="discount-buttons-grid">
+        <button onclick="searchDealsByCategory('15743631')">All Discounts</button>
+        <button onclick="searchDealsByCategory('15743631', '30-99')">30%+</button>
+        <button onclick="searchDealsByCategory('15743631', '40-99')">40%+</button>
+        <button onclick="searchDealsByCategory('15743631', '50-99')">50%+</button>
+        <button onclick="searchDealsByCategory('15743631', '60-99')">60%+</button>
+        <button onclick="searchDealsByCategory('15743631', '70-99')">70%+</button>
+        <button onclick="searchDealsByCategory('15743631', '80-99')">80%+</button>
+        <button onclick="searchDealsByCategory('15743631', '90-99')">90%+</button>
+      </div>
+    </li>
   </ul>
 </li>
+
 <!-- 📺 Electronics -->
 <li class="category" onclick="toggleSubcategories('electronics')">
   <span>▶ Electronics</span>
@@ -304,6 +327,7 @@
     </li>
   </ul>
 </li>
+
 
 <!-- 🛠️ Tools & Home Improvement -->
 <li class="category" onclick="toggleSubcategories('tools-home-improvement')">
