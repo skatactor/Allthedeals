@@ -1,32 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
-    // Globals to grab user input easily
     window.getKW = () => document.getElementById("search-box").value.trim();
-    window.getDiscount = () => document.getElementById("discount").value;
 
     window.searchDeals = function(node = "", discount = "", keyword = "", department = "") {
         const baseURL = "https://www.amazon.com/s?";
         const params = new URLSearchParams();
 
-        // 1. Keywords & Department Identification
+        const minP = document.getElementById("min-price").value;
+        const maxP = document.getElementById("max-price").value;
+        const sort = document.getElementById("sort-order").value;
+
         if (keyword) params.append("k", keyword);
         if (department) params.append("i", department);
-        if (node) params.append("node", node);
 
-        // 2. The Refinement Helper (rh)
-        // This is crucial for Amazon to actually trigger the discount filter
         let rhParts = [];
-        
-        // Add Category Node to RH if present
         if (node) rhParts.push(`n:${node}`);
 
-        // Add Discount (p_8)
+        // Handle Discount (p_8)
         if (discount && discount !== "all") {
             const min = discount.split("-")[0];
             rhParts.push(`p_8:${min}-99`);
         }
-
-        // Add Prime (p_85)
+        
+        // Handle Prime
         if (document.getElementById("prime-only")?.checked) {
             rhParts.push("p_85:2470955011");
         }
@@ -35,22 +30,23 @@ document.addEventListener("DOMContentLoaded", function () {
             params.append("rh", rhParts.join(","));
         }
 
-        // 3. BEST SELLER SORTING
-        // 'featured-rank' pulls the best-selling/trending items
-        params.append("s", "featured-rank");
-
-        // 4. Affiliate Tag
+        if (minP) params.append("low-price", minP);
+        if (maxP) params.append("high-price", maxP);
+        params.append("s", sort);
         params.append("tag", "allthedisco04-20");
 
-        const finalURL = baseURL + params.toString();
-        window.open(finalURL, "_blank");
+        window.open(baseURL + params.toString(), "_blank");
     };
 
-    // Generic search from top bar
     window.searchDealsFromBar = function() {
-        const kw = getKW();
-        const disc = getDiscount();
-        // Uses 'aps' (All Product Search) for the general bar
-        searchDeals("", disc !== "all" ? disc : "", kw, "aps");
+        const disc = document.getElementById("discount-main").value;
+        searchDeals("", disc, getKW(), "aps");
+    };
+
+    window.resetFilters = function() {
+        document.getElementById("search-box").value = "";
+        document.getElementById("min-price").value = "";
+        document.getElementById("max-price").value = "";
+        document.getElementById("prime-only").checked = false;
     };
 });
