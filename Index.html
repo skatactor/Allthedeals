@@ -11,80 +11,105 @@
 
 <header>
     <h1 class="site-title">All The Discounts</h1>
-    <p class="tagline">Hidden Best Seller Deals</p>
+    <p class="tagline">Search Hidden Amazon Best Seller Deals</p>
 </header>
 
 <div class="search-container">
-    <input type="text" id="search-box" placeholder="Search keywords (e.g. Marvel)..." inputmode="search" />
+    <h3>1. Search All Categories</h3>
+    <input type="text" id="search-box" placeholder="Keywords (e.g. Batman, Sony)..." inputmode="search" />
     
+    <div class="advanced-row">
+        <div class="price-inputs">
+            <input type="number" id="min-price" placeholder="Min $" />
+            <input type="number" id="max-price" placeholder="Max $" />
+        </div>
+        <select id="sort-order">
+            <option value="featured-rank">Best Sellers</option>
+            <option value="price-asc-rank">Price: Low to High</option>
+            <option value="review-rank">Top Rated</option>
+        </select>
+    </div>
+
     <div class="filter-controls">
-        <select id="discount">
-            <option value="all">Any Discount</option>
+        <select id="discount-main">
             <option value="30-99">30%+ Off</option>
             <option value="50-99" selected>50%+ Off</option>
             <option value="70-99">70%+ Off</option>
+            <option value="90-99">90%+ Off</option>
         </select>
-
-        <label class="prime-label">
-            <input type="checkbox" id="prime-only"> Prime Only
-        </label>
+        <label><input type="checkbox" id="prime-only"> Prime Only</label>
     </div>
 
-    <button class="main-search-btn" onclick="searchDealsFromBar()">Find Deals</button>
+    <button class="main-search-btn" onclick="searchDealsFromBar()">Search Amazon</button>
+    <button class="reset-btn" onclick="resetFilters()">Reset Filters</button>
 </div>
 
 <div class="container">
-    <h2 class="section-title">Books & Comics</h2>
-    <div class="category-grid">
-        <div class="category-card book-card" onclick="searchDeals('283155', getDiscount(), getKW(), 'stripbooks')">
-            <span>📚 All Books</span>
+    <h3 class="step-label">2. Or Browse Best Seller Deals</h3>
+
+    <h2 class="section-title">📚 Books & Graphic Novels</h2>
+    <div class="category-block">
+        <span class="cat-label">Graphic Novels</span>
+        <div class="pct-grid">
+            <button onclick="searchDeals('4366', '30-99', getKW(), 'stripbooks')">30%+</button>
+            <button onclick="searchDeals('4366', '50-99', getKW(), 'stripbooks')">50%+</button>
+            <button onclick="searchDeals('4366', '70-99', getKW(), 'stripbooks')">70%+</button>
+            <button onclick="searchDeals('4366', '90-99', getKW(), 'stripbooks')">90%+</button>
         </div>
-        <div class="category-card book-card" onclick="searchDeals('4366', getDiscount(), getKW(), 'stripbooks')">
-            <span>🦸 Graphic Novels</span>
-        </div>
-        <div class="category-card book-card" onclick="searchDeals('4400', getDiscount(), getKW(), 'stripbooks')">
-            <span>🔥 Manga</span>
-        </div>
-        <div class="category-card book-card" onclick="searchDeals('11350', getDiscount(), getKW(), 'stripbooks')">
-            <span>🎨 Art & Design</span>
+    </div>
+    <div class="category-block">
+        <span class="cat-label">Manga</span>
+        <div class="pct-grid">
+            <button onclick="searchDeals('4400', '30-99', getKW(), 'stripbooks')">30%+</button>
+            <button onclick="searchDeals('4400', '50-99', getKW(), 'stripbooks')">50%+</button>
+            <button onclick="searchDeals('4400', '70-99', getKW(), 'stripbooks')">70%+</button>
+            <button onclick="searchDeals('4400', '90-99', getKW(), 'stripbooks')">90%+</button>
         </div>
     </div>
 
-    <h2 class="section-title">Tech & Gear</h2>
-    <div class="category-grid">
-        <div class="category-card" onclick="searchDeals('172630', getDiscount(), getKW(), 'electronics')">
-            <span>🎧 Headphones</span>
+    <h2 class="section-title">🎧 Tech & Electronics</h2>
+    <div class="category-block">
+        <span class="cat-label">Headphones</span>
+        <div class="pct-grid">
+            <button onclick="searchDeals('172630', '30-99', getKW(), 'electronics')">30%+</button>
+            <button onclick="searchDeals('172630', '50-99', getKW(), 'electronics')">50%+</button>
+            <button onclick="searchDeals('172630', '70-99', getKW(), 'electronics')">70%+</button>
+            <button onclick="searchDeals('172630', '90-99', getKW(), 'electronics')">90%+</button>
         </div>
-        <div class="category-card" onclick="searchDeals('1232597011', getDiscount(), getKW(), 'pc')">
-            <span>📱 Tablets</span>
-        </div>
-        <div class="category-card" onclick="searchDeals('7939902011', getDiscount(), getKW(), 'electronics')">
-            <span>⌚ Smart Watches</span>
-        </div>
-        <div class="category-card" onclick="searchDeals('11036071', getDiscount(), getKW(), 'pc')">
-            <span>🖱️ PC Gaming</span>
+    </div>
+    <div class="category-block">
+        <span class="cat-label">Tablets</span>
+        <div class="pct-grid">
+            <button onclick="searchDeals('1232597011', '30-99', getKW(), 'electronics')">30%+</button>
+            <button onclick="searchDeals('1232597011', '50-99', getKW(), 'electronics')">50%+</button>
+            <button onclick="searchDeals('1232597011', '70-99', getKW(), 'electronics')">70%+</button>
+            <button onclick="searchDeals('1232597011', '90-99', getKW(), 'electronics')">90%+</button>
         </div>
     </div>
 
-    <h2 class="section-title">Lifestyle</h2>
-    <div class="category-grid">
-        <div class="category-card" onclick="searchDeals('7141123011', getDiscount(), getKW(), 'clothing')">
-            <span>👗 Clothing</span>
+    <h2 class="section-title">👕 Clothing & Home</h2>
+    <div class="category-block">
+        <span class="cat-label">Clothing</span>
+        <div class="pct-grid">
+            <button onclick="searchDeals('7141123011', '50-99', getKW(), 'fashion')">50%+</button>
+            <button onclick="searchDeals('7141123011', '70-99', getKW(), 'fashion')">70%+</button>
+            <button onclick="searchDeals('7141123011', '80-99', getKW(), 'fashion')">80%+</button>
+            <button onclick="searchDeals('7141123011', '90-99', getKW(), 'fashion')">90%+</button>
         </div>
-        <div class="category-card" onclick="searchDeals('165793011', getDiscount(), getKW(), 'toys-and-games')">
-            <span>🧸 Toys & Games</span>
-        </div>
-        <div class="category-card" onclick="searchDeals('1055398', getDiscount(), getKW(), 'home-garden')">
-            <span>🏠 Home</span>
-        </div>
-        <div class="category-card" onclick="searchDeals('11055981', getDiscount(), getKW(), 'tools')">
-            <span>🛠️ Tools</span>
+    </div>
+    <div class="category-block">
+        <span class="cat-label">Toys & Games</span>
+        <div class="pct-grid">
+            <button onclick="searchDeals('165793011', '50-99', getKW(), 'toys-and-games')">50%+</button>
+            <button onclick="searchDeals('165793011', '70-99', getKW(), 'toys-and-games')">70%+</button>
+            <button onclick="searchDeals('165793011', '80-99', getKW(), 'toys-and-games')">80%+</button>
+            <button onclick="searchDeals('165793011', '90-99', getKW(), 'toys-and-games')">90%+</button>
         </div>
     </div>
 </div>
 
 <footer>
-    <p>© 2026 All The Discounts | Best Seller Search Tool</p>
+    <p>© 2026 All The Discounts | Best Seller Search</p>
 </footer>
 
 </body>
