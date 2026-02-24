@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (maxP) params.append("high-price", maxP);
         params.append("s", sort);
         
-        // Final Tag Update
         params.append("tag", "allthedisco0b-20");
 
         const finalURL = baseURL + params.toString();
