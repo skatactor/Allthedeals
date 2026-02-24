@@ -1,116 +1,33 @@
-:root {
-    --amazon-navy: #232f3e;
-    --amazon-orange: #ff9900;
-    --bg-gray: #f4f7f9;
-    --white: #ffffff;
-    --text-dark: #1a1a1a;
-    --text-muted: #565959;
-    --card-shadow: 0 10px 25px rgba(0,0,0,0.05);
-}
-
-body { 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-    margin: 0; 
-    background-color: var(--bg-gray); 
-    color: var(--text-dark);
-    line-height: 1.5;
-}
-
-header { 
-    background: var(--amazon-navy); 
-    color: var(--white); 
-    padding: 50px 20px 70px; 
-    text-align: center;
-}
-
-.site-title { 
-    margin: 0; 
-    font-size: 2.2rem; 
-    font-weight: 800; 
-    letter-spacing: -1px; 
-}
-
-.tagline { 
-    margin: 10px 0 20px; 
-    font-size: 1rem; 
-    opacity: 0.8; 
-}
-
-.share-btn {
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: var(--white);
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.share-btn:hover { background: rgba(255,255,255,0.25); }
-
-.container { 
-    padding: 0 15px; 
-    max-width: 650px; 
-    margin: -40px auto 0; 
-}
-
-/* --- CARDS --- */
-.narrative-card, .search-container, .category-block, .instructions-mini {
-    background: var(--white);
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: var(--card-shadow);
-    margin-bottom: 25px;
-    border: 1px solid rgba(0,0,0,0.02);
-}
-
-.narrative-card p {
-    font-size: 0.95rem;
+.input-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
     color: var(--text-muted);
-    margin: 0 0 15px;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
 }
 
-.card-label { 
-    margin: 0 0 15px; 
-    font-size: 1.1rem; 
-    font-weight: 700; 
-    color: var(--amazon-navy); 
+.price-group, .sort-group, .discount-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-/* --- SEARCH INPUTS --- */
-input, select { 
-    padding: 15px; 
-    border: 1px solid #e0e0e0; 
-    border-radius: 12px; 
-    font-size: 16px; 
-    width: 100%; 
-    box-sizing: border-box;
-    margin-bottom: 12px;
-    background: #fafafa;
+.advanced-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    align-items: flex-end;
 }
 
-.advanced-row { 
-    display: flex; 
-    gap: 10px; 
-    margin: 10px 0; 
+/* Ensure the price inputs stay side-by-side */
+.price-inputs {
+    display: flex;
+    gap: 5px;
 }
 
-.price-inputs { 
-    display: flex; 
-    gap: 5px; 
-    flex: 1; 
+/* Adjusting the main search button for better spacing */
+.main-search-btn {
+    margin-top: 10px;
 }
-
-.filter-controls { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin: 15px 0 25px;
-}
-
-.checkbox-group { 
-    display: flex; 
-    gap: 12px; 
-    font-size: 0.85rem; 
-    font-weight: 600;
