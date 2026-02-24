@@ -37,7 +37,10 @@
     <div class="filter-controls">
         <select id="discount-main">
             <option value="25-99">25%+ Off</option>
+            <option value="30-99">30%+ Off</option>
+            <option value="40-99">40%+ Off</option>
             <option value="50-99" selected>50%+ Off</option>
+            <option value="60-99">60%+ Off</option>
             <option value="70-99">70%+ Off</option>
             <option value="80-99">80%+ Off</option>
             <option value="90-99">90%+ Off</option>
@@ -52,14 +55,29 @@
 <div class="container">
     <div class="instructions">
         <h3>💡 Pro-Tip: Lockdown Your Search</h3>
-        <p>Once you're on Amazon, use the <strong>left sidebar</strong> to select subcategories (like <em>Hardcover</em> or <em>Kitchen Gadgets</em>). The discount you picked here will stay locked in!</p>
+        <p>Once you're on Amazon, use the <strong>left sidebar</strong> to select subcategories (like <em>Hardcover</em> or <em>Marvel Omnibus</em>). The discount you picked here will stay locked in!</p>
     </div>
 
     <h3 class="step-label">2. Browse By Category</h3>
 
-    <h2 class="section-title">📚 Books & Comics</h2>
+    <h2 class="section-title">💥 Comics & Graphic Novels</h2>
     <div class="category-block">
-        <span class="cat-label">Graphic Novels, Manga & Books</span>
+        <span class="cat-label">Marvel, DC & Independent Omnibus</span>
+        <div class="pct-grid">
+            <button onclick="searchDeals('4366', '25-99', getKW(), 'stripbooks')">25%</button>
+            <button onclick="searchDeals('4366', '30-99', getKW(), 'stripbooks')">30%</button>
+            <button onclick="searchDeals('4366', '40-99', getKW(), 'stripbooks')">40%</button>
+            <button onclick="searchDeals('4366', '50-99', getKW(), 'stripbooks')">50%</button>
+            <button onclick="searchDeals('4366', '60-99', getKW(), 'stripbooks')">60%</button>
+            <button onclick="searchDeals('4366', '70-99', getKW(), 'stripbooks')">70%</button>
+            <button onclick="searchDeals('4366', '80-99', getKW(), 'stripbooks')">80%</button>
+            <button onclick="searchDeals('4366', '90-99', getKW(), 'stripbooks')">90%</button>
+        </div>
+    </div>
+
+    <h2 class="section-title">📚 General Books</h2>
+    <div class="category-block">
+        <span class="cat-label">All Genres (Fiction, Non-Fiction, etc.)</span>
         <div class="pct-grid">
             <button onclick="searchDeals('283155', '25-99', getKW(), 'stripbooks')">25%</button>
             <button onclick="searchDeals('283155', '30-99', getKW(), 'stripbooks')">30%</button>
@@ -87,9 +105,9 @@
         </div>
     </div>
 
-    <h2 class="section-title">🏠 Home, Beauty & Fashion</h2>
+    <h2 class="section-title">🏠 Home & Kitchen</h2>
     <div class="category-block">
-        <span class="cat-label">Home, Kitchen & Beauty</span>
+        <span class="cat-label">Furniture, Decor & Appliances</span>
         <div class="pct-grid">
             <button onclick="searchDeals('1055398', '25-95', getKW(), 'garden', true)">25%</button>
             <button onclick="searchDeals('1055398', '30-95', getKW(), 'garden', true)">30%</button>
@@ -99,35 +117,6 @@
             <button onclick="searchDeals('1055398', '70-95', getKW(), 'garden', true)">70%</button>
             <button onclick="searchDeals('1055398', '80-95', getKW(), 'garden', true)">80%</button>
             <button onclick="searchDeals('1055398', '90-95', getKW(), 'garden', true)">90%</button>
-        </div>
-    </div>
-
-    <div class="category-block">
-        <span class="cat-label">Clothing & Fashion</span>
-        <div class="pct-grid">
-            <button onclick="searchDeals('7141123011', '25-95', getKW(), 'fashion', true)">25%</button>
-            <button onclick="searchDeals('7141123011', '30-95', getKW(), 'fashion', true)">30%</button>
-            <button onclick="searchDeals('7141123011', '40-95', getKW(), 'fashion', true)">40%</button>
-            <button onclick="searchDeals('7141123011', '50-95', getKW(), 'fashion', true)">50%</button>
-            <button onclick="searchDeals('7141123011', '60-95', getKW(), 'fashion', true)">60%</button>
-            <button onclick="searchDeals('7141123011', '70-95', getKW(), 'fashion', true)">70%</button>
-            <button onclick="searchDeals('7141123011', '80-95', getKW(), 'fashion', true)">80%</button>
-            <button onclick="searchDeals('7141123011', '90-95', getKW(), 'fashion', true)">90%</button>
-        </div>
-    </div>
-
-    <h2 class="section-title">🎮 Games & Food</h2>
-    <div class="category-block">
-        <span class="cat-label">Video Games & Grocery</span>
-        <div class="pct-grid">
-            <button onclick="searchDeals('11846801', '25-95', getKW(), 'videogames', true)">25%</button>
-            <button onclick="searchDeals('11846801', '30-95', getKW(), 'videogames', true)">30%</button>
-            <button onclick="searchDeals('11846801', '40-95', getKW(), 'videogames', true)">40%</button>
-            <button onclick="searchDeals('11846801', '50-95', getKW(), 'videogames', true)">50%</button>
-            <button onclick="searchDeals('11846801', '60-95', getKW(), 'videogames', true)">60%</button>
-            <button onclick="searchDeals('11846801', '70-95', getKW(), 'videogames', true)">70%</button>
-            <button onclick="searchDeals('11846801', '80-95', getKW(), 'videogames', true)">80%</button>
-            <button onclick="searchDeals('11846801', '90-95', getKW(), 'videogames', true)">90%</button>
         </div>
     </div>
 </div>
