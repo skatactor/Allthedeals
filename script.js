@@ -1,32 +1,44 @@
 document.addEventListener("DOMContentLoaded", function () {
-  function searchDeals(categoryNode = "", discount = "", keyword = "", extraFilters = "", sorting = "price-desc-rank") {
+  function searchDeals(
+    categoryNode = "",
+    discount = "",
+    keyword = "",
+    extraFilters = "",
+    sorting = "price-desc-rank"
+  ) {
     const baseURL = "https://www.amazon.com/s?";
     const params = new URLSearchParams();
 
+    // Keyword search
     if (keyword) {
       params.append("k", keyword);
     }
 
-    let rh = [];
+    // Build "rh" filters (Amazon uses this for category + Prime)
+    const rh = [];
 
     if (categoryNode) {
+      // Keep BOTH: bbn + rh n:node helps Amazon stay in-category
       params.append("bbn", categoryNode);
       rh.push(`n:${categoryNode}`);
     }
 
+    // ✅ FIX: Use pct-off as a top-level param (works across departments like Electronics)
+    // Instead of rh p_8 which is inconsistent outside Books
     if (discount) {
-      let discountMin = discount.split("-")[0];
-      rh.push(`p_8:${discountMin}-99`);
+      params.append("pct-off", discount); // e.g., "70-99"
     }
 
+    // Prime-only filter (kept as-is)
     if (document.getElementById("prime-only")?.checked) {
-      rh.push("p_85:2470955011"); // Amazon Prime filter
+      rh.push("p_85:2470955011");
     }
 
+    // Any extra filters passed in (kept as-is)
     if (extraFilters) {
-      extraFilters.split("&").forEach(filter => {
-        let [key, value] = filter.split("=");
-        params.append(key, value);
+      extraFilters.split("&").forEach((filter) => {
+        const [key, value] = filter.split("=");
+        if (key && value) params.append(key, value);
       });
     }
 
@@ -34,22 +46,32 @@ document.addEventListener("DOMContentLoaded", function () {
       params.append("rh", rh.join(","));
     }
 
+    // Sorting (kept as-is)
     params.append("s", sorting);
-    params.append("tag", "allthedisco04-20"); // Affiliate tag
+
+    // Affiliate tag (kept as-is)
+    params.append("tag", "allthedisco04-20");
 
     const finalURL = baseURL + params.toString();
     console.log("🔗 Opening Amazon Search:", finalURL);
     window.open(finalURL, "_blank");
   }
 
-  window.searchDealsByCategory = function (categoryNode, discount = "", extraFilters = "", sorting = "price-desc-rank") {
+  window.searchDealsByCategory = function (
+    categoryNode,
+    discount = "",
+    extraFilters = "",
+    sorting = "price-desc-rank"
+  ) {
     if (!categoryNode) {
       console.error("❌ Error: Missing category node!");
       return;
     }
 
-    document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
-    const categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryNode}')"]`);
+    document.querySelectorAll(".category").forEach((cat) => cat.classList.remove("active"));
+    const categoryElement = document.querySelector(
+      `[onclick="toggleSubcategories('${categoryNode}')"]`
+    );
     if (categoryElement) {
       categoryElement.classList.add("active");
     }
@@ -63,27 +85,30 @@ document.addEventListener("DOMContentLoaded", function () {
     const keyword = document.getElementById("search-box").value.trim();
     const discount = document.getElementById("discount").value;
     console.log(`🔎 General Search: ${keyword} | ${discount}`);
+
     searchDeals("", discount !== "all" ? discount : "", keyword, "", "price-desc-rank");
   };
 
   window.toggleSubcategories = function (categoryId) {
     const subcategoryList = document.getElementById(categoryId);
-    const categoryElement = document.querySelector(`[onclick="toggleSubcategories('${categoryId}')"]`);
+    const categoryElement = document.querySelector(
+      `[onclick="toggleSubcategories('${categoryId}')"]`
+    );
 
     if (!subcategoryList) {
       console.error(`❌ No subcategory list for: ${categoryId}`);
       return;
     }
 
-    document.querySelectorAll(".category").forEach(cat => cat.classList.remove("active"));
+    document.querySelectorAll(".category").forEach((cat) => cat.classList.remove("active"));
 
     if (subcategoryList.classList.contains("visible")) {
       subcategoryList.classList.remove("visible");
-      categoryElement.classList.remove("active");
+      if (categoryElement) categoryElement.classList.remove("active");
     } else {
-      document.querySelectorAll(".subcategory-list").forEach(list => list.classList.remove("visible"));
+      document.querySelectorAll(".subcategory-list").forEach((list) => list.classList.remove("visible"));
       subcategoryList.classList.add("visible");
-      categoryElement.classList.add("active");
+      if (categoryElement) categoryElement.classList.add("active");
     }
   };
 });
