@@ -1,92 +1,71 @@
-/* --- GLOBAL STYLES --- */
-:root {
-    --amazon-blue: #232f3e;
-    --amazon-orange: #ff9900;
-    --bg: #f3f3f3;
-    --link-blue: #007185;
-}
+document.addEventListener("DOMContentLoaded", function () {
+    window.getKW = () => document.getElementById("search-box").value.trim();
 
-body { 
-    font-family: Arial, sans-serif; 
-    margin: 0; 
-    background-color: var(--bg); 
-    color: #333; 
-    line-height: 1.5;
-}
+    window.searchDeals = function(node = "", discount = "", keyword = "", department = "", useP75 = false) {
+        const baseURL = "https://www.amazon.com/s?";
+        const params = new URLSearchParams();
 
-header { 
-    background: var(--amazon-blue); 
-    color: white; 
-    padding: 20px 15px; 
-    text-align: center; 
-}
+        const minP = document.getElementById("min-price").value;
+        const maxP = document.getElementById("max-price").value;
+        const sort = document.getElementById("sort-order").value;
 
-.site-title { margin: 0; font-size: 1.6rem; }
-.tagline { margin: 5px 0 0; font-size: 0.8rem; opacity: 0.8; }
+        if (department) params.append("i", department);
+        if (keyword) params.append("k", keyword);
 
-/* --- SHARE BUTTON --- */
-.share-container {
-    text-align: center;
-    margin: 15px 0;
-}
+        let rhParts = [];
+        if (node) rhParts.push(`n:${node}`);
 
-.share-btn {
-    background: #ffffff;
-    color: var(--link-blue);
-    border: 1px solid var(--link-blue);
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+        if (discount && discount !== "all") {
+            const min = discount.split("-")[0];
+            const max = discount.split("-")[1] || "99";
+            if (useP75) {
+                rhParts.push(`p_75:${min}-${max}`);
+            } else {
+                rhParts.push(`p_8:${min}-99`);
+            }
+        }
+        
+        if (document.getElementById("prime-only")?.checked) {
+            rhParts.push("p_85:2470955011");
+        }
 
-.share-btn:active {
-    background: #f0f7f8;
-    transform: translateY(1px);
-}
+        if (rhParts.length > 0) {
+            params.append("rh", rhParts.join(","));
+        }
 
-/* --- SEARCH SECTION --- */
-.search-container {
-    background: white; 
-    margin: 10px; 
-    padding: 20px; 
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-    display: flex; 
-    flex-direction: column; 
-    gap: 12px;
-}
+        if (minP) params.append("low-price", minP);
+        if (maxP) params.append("high-price", maxP);
+        params.append("s", sort);
+        
+        params.append("tag", "allthedisco0b-20");
 
-.search-container h3 { margin: 0; font-size: 1rem; color: var(--amazon-blue); }
+        const finalURL = baseURL + params.toString();
+        window.open(finalURL, "_blank");
+    };
 
-input, select { 
-    padding: 12px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    font-size: 16px; 
-    width: 100%; 
-    box-sizing: border-box; 
-}
+    window.searchDealsFromBar = function() {
+        const disc = document.getElementById("discount-main").value;
+        searchDeals("", disc, getKW(), "aps", false);
+    };
 
-.advanced-row { display: flex; gap: 8px; }
-.price-inputs { display: flex; gap: 4px; flex: 1; }
-.price-inputs input { width: 50%; }
-#sort-order { flex: 1; }
+    window.resetFilters = function() {
+        document.getElementById("search-box").value = "";
+        document.getElementById("min-price").value = "";
+        document.getElementById("max-price").value = "";
+        document.getElementById("prime-only").checked = false;
+        document.getElementById("discount-main").value = "50-99";
+        document.getElementById("sort-order").value = "relevancerank";
+    };
 
-.filter-controls { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    font-size: 0.9rem; 
-    padding: 5px 0;
-}
-
-.main-search-btn { 
-    background: var(--amazon-orange); 
-    border: none; 
-    padding: 15px; 
-    font-weight: bold; 
-    font-size: 1rem;
-    border-radius: 4px;
+    window.shareSite = function() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'All The Discounts',
+                text: 'Check out this hidden Amazon deal finder!',
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            alert("Copy this link to share: " + window.location.href);
+        }
+    };
+});
