@@ -15,13 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let rhParts = [];
         if (node) rhParts.push(`n:${node}`);
 
-        // Handle Discount (p_8)
         if (discount && discount !== "all") {
             const min = discount.split("-")[0];
             rhParts.push(`p_8:${min}-99`);
         }
         
-        // Handle Prime
         if (document.getElementById("prime-only")?.checked) {
             rhParts.push("p_85:2470955011");
         }
@@ -35,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
         params.append("s", sort);
         params.append("tag", "allthedisco04-20");
 
-        window.open(baseURL + params.toString(), "_blank");
+        const finalURL = baseURL + params.toString();
+        window.open(finalURL, "_blank");
     };
 
     window.searchDealsFromBar = function() {
@@ -48,5 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("min-price").value = "";
         document.getElementById("max-price").value = "";
         document.getElementById("prime-only").checked = false;
+        document.getElementById("discount-main").value = "50-99";
+        document.getElementById("sort-order").value = "featured-rank";
     };
 });
