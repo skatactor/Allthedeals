@@ -27,7 +27,7 @@ input, select { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-
 
 .container { padding: 10px; max-width: 600px; margin: 0 auto; }
 .step-label { font-size: 0.9rem; margin: 10px 0; color: var(--amazon-blue); font-weight: bold; }
-.section-title { font-size: 1rem; border-bottom: 2px solid var(--amazon-orange); padding-bottom: 5px; margin: 20px 0 10px; color: var(--amazon-blue); }
+.section-title { font-size: 1rem; border-bottom: 2px solid var(--amazon-orange); padding-bottom: 5px; margin: 25px 0 10px; color: var(--amazon-blue); }
 
 .category-block { background: white; padding: 12px; border-radius: 6px; margin-bottom: 12px; border: 1px solid #ddd; }
 .cat-label { display: block; font-weight: bold; margin-bottom: 10px; font-size: 0.85rem; color: #444; }
