@@ -31,7 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (minP) params.append("low-price", minP);
         if (maxP) params.append("high-price", maxP);
         params.append("s", sort);
-        params.append("tag", "allthedisco04-20");
+        
+        // Updated Associate Tag
+        params.append("tag", "allthedisco0b-20");
 
         const finalURL = baseURL + params.toString();
         window.open(finalURL, "_blank");
