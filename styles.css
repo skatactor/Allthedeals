@@ -1,211 +1,123 @@
-/* General Layout */
+:root {
+    --amazon-blue: #232f3e;
+    --amazon-orange: #febd69;
+    --text-dark: #111;
+    --bg-light: #f6f6f6;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0 auto;
-  padding: 0;
-  max-width: 1200px;
-  background-color: #f9f9f9;
+    font-family: -apple-system, system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
 }
 
 header {
-  text-align: center;
-  background-color: #333;
-  color: white;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: var(--amazon-blue);
+    color: white;
+    padding: 25px 15px;
+    text-align: center;
 }
 
-.site-title {
-  margin: 0;
-}
+.site-title { margin: 0; font-size: 1.8rem; letter-spacing: -1px; }
+.tagline { margin: 5px 0 0; opacity: 0.8; font-size: 0.9rem; }
 
-/* Search Bar */
 .search-container {
-  text-align: center;
-  margin: 20px 0;
-  padding: 20px;
-  border-bottom: 1px solid #ccc;
-}
-
-.search-container input[type="text"],
-.search-container select {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.search-container input[type="text"] {
-  width: 300px;
-}
-
-.search-container button {
-  padding: 10px 20px;
-  background-color: #ff9900;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 10px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.search-container button:hover {
-  background-color: #cc7a00;
-  transform: scale(1.05);
-}
-
-.search-container button:focus {
-  outline: 2px solid #333;
-  outline-offset: 2px;
-}
-
-/* Instruction */
-.instruction {
-  margin-left: 20px;
-  font-size: 14px;
-  color: #666;
-}
-
-/* Layout Container */
-.container {
-  display: flex;
-  padding: 20px;
-}
-
-/* Category List (Sidebar) */
-.category-list {
-  width: 250px;
-  border-right: 2px solid #ccc;
-  min-height: 100vh;
-  position: sticky;
-  top: 0;
-  overflow-y: auto;
-}
-
-.category-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.category {
-  cursor: pointer;
-  padding: 10px;
-  background: #444;
-  color: white;
-  border-radius: 5px;
-  margin-bottom: 5px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.category:hover {
-  background: #ff9900;
-  transform: scale(1.02);
-}
-
-.category.active {
-  background-color: #ff9900;
-  color: white;
-}
-
-/* Discount Buttons */
-.discount-buttons-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 5px;
-  margin-top: 10px;
-}
-
-.discount-buttons-grid button {
-  padding: 10px;
-  background-color: #ff9900;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.discount-buttons-grid button:hover {
-  background-color: #cc7a00;
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.discount-buttons-grid button:focus {
-  outline: 2px solid #333;
-  outline-offset: 2px;
-}
-
-/* Subcategory Dropdowns */
-.subcategory-list {
-  display: none;
-  padding-left: 20px;
-  list-style: none;
-  margin-top: 10px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.subcategory-list.visible {
-  display: block;
-  opacity: 1;
-}
-
-
-.subcategory-list li {
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.subcategory-list a {
-  display: block;
-  margin-bottom: 5px;
-  color: #333;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.subcategory-list a:hover {
-  color: #ff9900;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .container {
+    background: white;
+    padding: 20px;
+    margin: -15px 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: flex;
     flex-direction: column;
-  }
-  .category-list {
-    width: 100%;
-    border-right: none;
-    border-bottom: 2px solid #ccc;
-    position: static;
-  }
-  .discount-buttons-grid {
+    gap: 12px;
+}
+
+input[type="text"] {
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.filter-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.main-search-btn {
+    background-color: var(--amazon-orange);
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.container { padding: 0 15px 40px; }
+
+.section-title {
+    font-size: 1.1rem;
+    margin: 25px 0 10px 5px;
+    color: var(--amazon-blue);
+    border-bottom: 2px solid var(--amazon-orange);
+    display: inline-block;
+}
+
+.category-grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-  }
+    gap: 10px;
 }
 
-@media (max-width: 480px) {
-  .discount-buttons-grid {
-    grid-template-columns: 1fr;
-  }
+.category-card {
+    background: white;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    font-weight: 600;
+    text-align: center;
+    padding: 5px;
+    transition: transform 0.1s, background-color 0.1s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+.category-card:active {
+    transform: scale(0.96);
+    background-color: #fff9f0;
+    border-color: var(--amazon-orange);
 }
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+
+.book-card {
+    border-top: 4px solid #4a90e2;
 }
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: #888;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+
+/* Desktop sizing */
+@media (min-width: 768px) {
+    .search-container { max-width: 500px; margin: -15px auto 20px; }
+    .category-grid { grid-template-columns: repeat(4, 1fr); max-width: 800px; margin: 0 auto; }
+    .container { max-width: 800px; margin: 0 auto; }
 }
