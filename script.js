@@ -16,11 +16,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (node) rhParts.push(`n:${node}`);
         if (extraRh) rhParts.push(extraRh);
 
+        // SOLD BY AMAZON FILTER
+        if (document.getElementById("amazon-only")?.checked) {
+            params.append("emi", "ATVPDKIKX0DER");
+        }
+
         if (discount && discount !== "all") {
             const min = discount.split("-")[0];
             const max = discount.split("-")[1] || "99";
             if (useP75) {
-                // For p_75 categories, append directly to rh string
                 let currentRh = rhParts.join(",");
                 params.append("rh", currentRh + `,p_75:${min}-${max}`);
             } else {
@@ -41,8 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         params.append("s", sort);
         params.append("tag", "allthedisco0b-20");
 
-        const finalURL = baseURL + params.toString();
-        window.open(finalURL, "_blank");
+        window.open(baseURL + params.toString(), "_blank");
     };
 
     window.searchDealsFromBar = function() {
@@ -55,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("min-price").value = "";
         document.getElementById("max-price").value = "";
         document.getElementById("prime-only").checked = false;
+        document.getElementById("amazon-only").checked = false;
         document.getElementById("discount-main").value = "50-99";
         document.getElementById("sort-order").value = "relevancerank";
     };
