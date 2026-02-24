@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     window.getKW = () => document.getElementById("search-box").value.trim();
 
-    window.searchDeals = function(node = "", discount = "", keyword = "", department = "", useP75 = false) {
+    window.searchDeals = function(node = "", discount = "", keyword = "", department = "", useP75 = false, extraRh = "") {
         const baseURL = "https://www.amazon.com/s?";
         const params = new URLSearchParams();
 
@@ -14,30 +14,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let rhParts = [];
         if (node) rhParts.push(`n:${node}`);
+        if (extraRh) rhParts.push(extraRh);
 
         if (discount && discount !== "all") {
             const min = discount.split("-")[0];
             const max = discount.split("-")[1] || "99";
-            // useP75 logic for lifestyle/tech, p_8 for books/comics
             if (useP75) {
-                rhParts.push(`p_75:${min}-${max}`);
+                // For p_75 categories, append directly to rh string
+                let currentRh = rhParts.join(",");
+                params.append("rh", currentRh + `,p_75:${min}-${max}`);
             } else {
                 rhParts.push(`p_8:${min}-99`);
+                params.append("rh", rhParts.join(","));
             }
+        } else {
+            if (rhParts.length > 0) params.append("rh", rhParts.join(","));
         }
         
         if (document.getElementById("prime-only")?.checked) {
-            rhParts.push("p_85:2470955011");
-        }
-
-        if (rhParts.length > 0) {
-            params.append("rh", rhParts.join(","));
+            let currentRh = params.get("rh") || "";
+            params.set("rh", currentRh + (currentRh ? "," : "") + "p_85:2470955011");
         }
 
         if (minP) params.append("low-price", minP);
         if (maxP) params.append("high-price", maxP);
         params.append("s", sort);
-        
         params.append("tag", "allthedisco0b-20");
 
         const finalURL = baseURL + params.toString();
@@ -46,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.searchDealsFromBar = function() {
         const disc = document.getElementById("discount-main").value;
-        // Global search from top bar uses standard logic
         searchDeals("", disc, getKW(), "aps", false);
     };
 
