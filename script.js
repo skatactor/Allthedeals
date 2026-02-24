@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     window.getKW = () => document.getElementById("search-box").value.trim();
 
-    window.searchDeals = function(node = "", discount = "", keyword = "", department = "") {
+    window.searchDeals = function(node = "", discount = "", keyword = "", department = "", useP75 = false, extraRh = "") {
         const baseURL = "https://www.amazon.com/s?";
         const params = new URLSearchParams();
 
@@ -9,30 +9,41 @@ document.addEventListener("DOMContentLoaded", function () {
         const maxP = document.getElementById("max-price").value;
         const sort = document.getElementById("sort-order").value;
 
-        // Use 'i' and 'bbn' together to force the sidebar to stay checked
         if (department) params.append("i", department);
-        if (node) params.append("bbn", node);
         if (keyword) params.append("k", keyword);
 
         let rhParts = [];
+        // Primary Category Node
         if (node) rhParts.push(`n:${node}`);
+        
+        // Handle Sub-category chains (like Headphones Node inside Electronics Node)
+        if (extraRh) rhParts.push(extraRh);
+
+        // Percentage Off vs. Discount Parameter
         if (discount && discount !== "all") {
             const min = discount.split("-")[0];
-            rhParts.push(`p_8:${min}-99`);
+            const max = discount.split("-")[1] || "99";
+            if (useP75) {
+                params.append("rh", rhParts.join(",") + `,p_75:${min}-${max}`);
+            } else {
+                rhParts.push(`p_8:${min}-99`);
+                params.append("rh", rhParts.join(","));
+            }
+        } else {
+            if (rhParts.length > 0) params.append("rh", rhParts.join(","));
         }
+        
         if (document.getElementById("prime-only")?.checked) {
-            rhParts.push("p_85:2470955011");
-        }
-
-        if (rhParts.length > 0) {
-            params.append("rh", rhParts.join(","));
+            // Append Prime filter if not already in rh
+            let currentRh = params.get("rh") || "";
+            params.set("rh", currentRh + (currentRh ? "," : "") + "p_85:2470955011");
         }
 
         if (minP) params.append("low-price", minP);
         if (maxP) params.append("high-price", maxP);
         params.append("s", sort);
         
-        // Final Tag Update
+        // Final Tag
         params.append("tag", "allthedisco0b-20");
 
         const finalURL = baseURL + params.toString();
@@ -41,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.searchDealsFromBar = function() {
         const disc = document.getElementById("discount-main").value;
-        searchDeals("", disc, getKW(), "aps");
+        searchDeals("", disc, getKW(), "aps", false);
     };
 
     window.resetFilters = function() {
