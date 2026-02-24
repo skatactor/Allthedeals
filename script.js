@@ -9,17 +9,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const maxP = document.getElementById("max-price").value;
         const sort = document.getElementById("sort-order").value;
 
-        if (keyword) params.append("k", keyword);
+        // Use 'i' and 'bbn' together to force the sidebar to stay checked
         if (department) params.append("i", department);
+        if (node) params.append("bbn", node);
+        if (keyword) params.append("k", keyword);
 
         let rhParts = [];
         if (node) rhParts.push(`n:${node}`);
-
         if (discount && discount !== "all") {
             const min = discount.split("-")[0];
             rhParts.push(`p_8:${min}-99`);
         }
-        
         if (document.getElementById("prime-only")?.checked) {
             rhParts.push("p_85:2470955011");
         }
@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (maxP) params.append("high-price", maxP);
         params.append("s", sort);
         
+        // Final Tag Update
         params.append("tag", "allthedisco0b-20");
 
         const finalURL = baseURL + params.toString();
@@ -49,6 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("max-price").value = "";
         document.getElementById("prime-only").checked = false;
         document.getElementById("discount-main").value = "50-99";
-        document.getElementById("sort-order").value = "featured-rank";
+        document.getElementById("sort-order").value = "relevancerank";
     };
 });
