@@ -37,9 +37,9 @@ input, select { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-
 .category-block { background: white; padding: 12px; border-radius: 6px; margin-bottom: 12px; border: 1px solid #ddd; }
 .cat-label { display: block; font-weight: bold; margin-bottom: 10px; font-size: 0.85rem; color: #444; }
 
-.pct-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.pct-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .pct-grid button {
-    background: #f8f8f8; border: 1px solid #ddd; padding: 12px 0; font-size: 0.7rem;
+    background: #f8f8f8; border: 1px solid #ddd; padding: 12px 0; font-size: 0.75rem;
     font-weight: bold; border-radius: 4px; cursor: pointer;
 }
 .pct-grid button:active { background: var(--amazon-orange); color: white; }
