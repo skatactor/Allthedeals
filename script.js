@@ -1,114 +1,56 @@
 document.addEventListener("DOMContentLoaded", function () {
-  function searchDeals(
-    categoryNode = "",
-    discount = "",
-    keyword = "",
-    extraFilters = "",
-    sorting = "price-desc-rank"
-  ) {
-    const baseURL = "https://www.amazon.com/s?";
-    const params = new URLSearchParams();
+    
+    // Globals to grab user input easily
+    window.getKW = () => document.getElementById("search-box").value.trim();
+    window.getDiscount = () => document.getElementById("discount").value;
 
-    // Keyword search
-    if (keyword) {
-      params.append("k", keyword);
-    }
+    window.searchDeals = function(node = "", discount = "", keyword = "", department = "") {
+        const baseURL = "https://www.amazon.com/s?";
+        const params = new URLSearchParams();
 
-    // Build "rh" filters (Amazon uses this for category + Prime)
-    const rh = [];
+        // 1. Keywords & Department Identification
+        if (keyword) params.append("k", keyword);
+        if (department) params.append("i", department);
+        if (node) params.append("node", node);
 
-    if (categoryNode) {
-      // Keep BOTH: bbn + rh n:node helps Amazon stay in-category
-      params.append("bbn", categoryNode);
-      rh.push(`n:${categoryNode}`);
-    }
+        // 2. The Refinement Helper (rh)
+        // This is crucial for Amazon to actually trigger the discount filter
+        let rhParts = [];
+        
+        // Add Category Node to RH if present
+        if (node) rhParts.push(`n:${node}`);
 
-    // ✅ FIX: Use pct-off as a top-level param (works across departments like Electronics)
-    // Instead of rh p_8 which is inconsistent outside Books
-    if (discount) {
-      params.append("pct-off", discount); // e.g., "70-99"
-    }
+        // Add Discount (p_8)
+        if (discount && discount !== "all") {
+            const min = discount.split("-")[0];
+            rhParts.push(`p_8:${min}-99`);
+        }
 
-    // Prime-only filter (kept as-is)
-    if (document.getElementById("prime-only")?.checked) {
-      rh.push("p_85:2470955011");
-    }
+        // Add Prime (p_85)
+        if (document.getElementById("prime-only")?.checked) {
+            rhParts.push("p_85:2470955011");
+        }
 
-    // Any extra filters passed in (kept as-is)
-    if (extraFilters) {
-      extraFilters.split("&").forEach((filter) => {
-        const [key, value] = filter.split("=");
-        if (key && value) params.append(key, value);
-      });
-    }
+        if (rhParts.length > 0) {
+            params.append("rh", rhParts.join(","));
+        }
 
-    if (rh.length > 0) {
-      params.append("rh", rh.join(","));
-    }
+        // 3. BEST SELLER SORTING
+        // 'featured-rank' pulls the best-selling/trending items
+        params.append("s", "featured-rank");
 
-    // Sorting (kept as-is)
-    params.append("s", sorting);
+        // 4. Affiliate Tag
+        params.append("tag", "allthedisco04-20");
 
-    // Affiliate tag (kept as-is)
-    params.append("tag", "allthedisco04-20");
+        const finalURL = baseURL + params.toString();
+        window.open(finalURL, "_blank");
+    };
 
-    const finalURL = baseURL + params.toString();
-    console.log("🔗 Opening Amazon Search:", finalURL);
-    window.open(finalURL, "_blank");
-  }
-
-  window.searchDealsByCategory = function (
-    categoryNode,
-    discount = "",
-    extraFilters = "",
-    sorting = "price-desc-rank"
-  ) {
-    if (!categoryNode) {
-      console.error("❌ Error: Missing category node!");
-      return;
-    }
-
-    document.querySelectorAll(".category").forEach((cat) => cat.classList.remove("active"));
-    const categoryElement = document.querySelector(
-      `[onclick="toggleSubcategories('${categoryNode}')"]`
-    );
-    if (categoryElement) {
-      categoryElement.classList.add("active");
-    }
-
-    const keyword = document.getElementById("search-box").value.trim();
-    console.log(`🔎 Category Search: ${keyword} | ${categoryNode} | ${discount}`);
-    searchDeals(categoryNode, discount, keyword, extraFilters, sorting);
-  };
-
-  window.searchDealsFromBar = function () {
-    const keyword = document.getElementById("search-box").value.trim();
-    const discount = document.getElementById("discount").value;
-    console.log(`🔎 General Search: ${keyword} | ${discount}`);
-
-    searchDeals("", discount !== "all" ? discount : "", keyword, "", "price-desc-rank");
-  };
-
-  window.toggleSubcategories = function (categoryId) {
-    const subcategoryList = document.getElementById(categoryId);
-    const categoryElement = document.querySelector(
-      `[onclick="toggleSubcategories('${categoryId}')"]`
-    );
-
-    if (!subcategoryList) {
-      console.error(`❌ No subcategory list for: ${categoryId}`);
-      return;
-    }
-
-    document.querySelectorAll(".category").forEach((cat) => cat.classList.remove("active"));
-
-    if (subcategoryList.classList.contains("visible")) {
-      subcategoryList.classList.remove("visible");
-      if (categoryElement) categoryElement.classList.remove("active");
-    } else {
-      document.querySelectorAll(".subcategory-list").forEach((list) => list.classList.remove("visible"));
-      subcategoryList.classList.add("visible");
-      if (categoryElement) categoryElement.classList.add("active");
-    }
-  };
+    // Generic search from top bar
+    window.searchDealsFromBar = function() {
+        const kw = getKW();
+        const disc = getDiscount();
+        // Uses 'aps' (All Product Search) for the general bar
+        searchDeals("", disc !== "all" ? disc : "", kw, "aps");
+    };
 });
