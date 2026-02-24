@@ -1,47 +1,92 @@
+/* --- GLOBAL STYLES --- */
 :root {
     --amazon-blue: #232f3e;
     --amazon-orange: #ff9900;
     --bg: #f3f3f3;
+    --link-blue: #007185;
 }
 
-body { font-family: Arial, sans-serif; margin: 0; background-color: var(--bg); color: #333; }
-header { background: var(--amazon-blue); color: white; padding: 15px; text-align: center; }
-.site-title { margin: 0; font-size: 1.4rem; }
-.tagline { margin: 3px 0 0; font-size: 0.75rem; opacity: 0.8; }
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 0; 
+    background-color: var(--bg); 
+    color: #333; 
+    line-height: 1.5;
+}
 
+header { 
+    background: var(--amazon-blue); 
+    color: white; 
+    padding: 20px 15px; 
+    text-align: center; 
+}
+
+.site-title { margin: 0; font-size: 1.6rem; }
+.tagline { margin: 5px 0 0; font-size: 0.8rem; opacity: 0.8; }
+
+/* --- SHARE BUTTON --- */
+.share-container {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.share-btn {
+    background: #ffffff;
+    color: var(--link-blue);
+    border: 1px solid var(--link-blue);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.share-btn:active {
+    background: #f0f7f8;
+    transform: translateY(1px);
+}
+
+/* --- SEARCH SECTION --- */
 .search-container {
-    background: white; margin: 10px; padding: 15px; border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 10px;
+    background: white; 
+    margin: 10px; 
+    padding: 20px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px;
 }
 
-.instructions {
-    background: #fff8e7; border-left: 4px solid var(--amazon-orange); padding: 12px;
-    margin: 10px 0; border-radius: 6px; font-size: 0.8rem; line-height: 1.4;
-}
-.instructions h3 { margin: 0 0 5px; font-size: 0.85rem; color: #856404; }
+.search-container h3 { margin: 0; font-size: 1rem; color: var(--amazon-blue); }
 
-input, select { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%; box-sizing: border-box; }
+input, select { 
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    font-size: 16px; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
 .advanced-row { display: flex; gap: 8px; }
 .price-inputs { display: flex; gap: 4px; flex: 1; }
 .price-inputs input { width: 50%; }
 #sort-order { flex: 1; }
 
-.filter-controls { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; }
-.main-search-btn { background: var(--amazon-orange); border: none; padding: 14px; font-weight: bold; border-radius: 4px; cursor: pointer; }
-.reset-btn { background: none; border: none; color: #888; text-decoration: underline; font-size: 0.75rem; cursor: pointer; align-self: center; }
-
-.container { padding: 10px; max-width: 600px; margin: 0 auto; }
-.step-label { font-size: 0.9rem; margin: 20px 0 10px; color: var(--amazon-blue); font-weight: bold; }
-.section-title { font-size: 1rem; border-bottom: 2px solid var(--amazon-orange); padding-bottom: 5px; margin: 25px 0 10px; color: var(--amazon-blue); }
-
-.category-block { background: white; padding: 12px; border-radius: 6px; margin-bottom: 12px; border: 1px solid #ddd; }
-.cat-label { display: block; font-weight: bold; margin-bottom: 10px; font-size: 0.85rem; color: #444; }
-
-.pct-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.pct-grid button {
-    background: #f8f8f8; border: 1px solid #ddd; padding: 12px 0; font-size: 0.75rem;
-    font-weight: bold; border-radius: 4px; cursor: pointer;
+.filter-controls { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    font-size: 0.9rem; 
+    padding: 5px 0;
 }
-.pct-grid button:active { background: var(--amazon-orange); color: white; }
 
-footer { text-align: center; padding: 25px; font-size: 0.7rem; color: #999; }
+.main-search-btn { 
+    background: var(--amazon-orange); 
+    border: none; 
+    padding: 15px; 
+    font-weight: bold; 
+    font-size: 1rem;
+    border-radius: 4px;
