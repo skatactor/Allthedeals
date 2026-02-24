@@ -1,71 +1,118 @@
-document.addEventListener("DOMContentLoaded", function () {
-    window.getKW = () => document.getElementById("search-box").value.trim();
+:root {
+    --primary-blue: #232f3e;
+    --accent-orange: #ff9900;
+    --light-bg: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-main: #1a1a1a;
+    --text-muted: #565959;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
 
-    window.searchDeals = function(node = "", discount = "", keyword = "", department = "", useP75 = false) {
-        const baseURL = "https://www.amazon.com/s?";
-        const params = new URLSearchParams();
+body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    margin: 0; 
+    background-color: var(--light-bg); 
+    color: var(--text-main);
+    line-height: 1.5;
+}
 
-        const minP = document.getElementById("min-price").value;
-        const maxP = document.getElementById("max-price").value;
-        const sort = document.getElementById("sort-order").value;
+header { 
+    background: var(--primary-blue); 
+    color: white; 
+    padding: 40px 20px 60px; 
+    text-align: center;
+}
 
-        if (department) params.append("i", department);
-        if (keyword) params.append("k", keyword);
+.site-title { margin: 0; font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
+.tagline { margin: 8px 0 15px; font-size: 1rem; opacity: 0.8; }
 
-        let rhParts = [];
-        if (node) rhParts.push(`n:${node}`);
+.share-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
 
-        if (discount && discount !== "all") {
-            const min = discount.split("-")[0];
-            const max = discount.split("-")[1] || "99";
-            if (useP75) {
-                rhParts.push(`p_75:${min}-${max}`);
-            } else {
-                rhParts.push(`p_8:${min}-99`);
-            }
-        }
-        
-        if (document.getElementById("prime-only")?.checked) {
-            rhParts.push("p_85:2470955011");
-        }
+.container { 
+    padding: 0 15px; 
+    max-width: 650px; 
+    margin: -30px auto 0; 
+}
 
-        if (rhParts.length > 0) {
-            params.append("rh", rhParts.join(","));
-        }
+/* CARDS */
+.narrative-card, .search-container, .category-block {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
 
-        if (minP) params.append("low-price", minP);
-        if (maxP) params.append("high-price", maxP);
-        params.append("s", sort);
-        
-        params.append("tag", "allthedisco0b-20");
+.narrative-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0 0 15px;
+}
 
-        const finalURL = baseURL + params.toString();
-        window.open(finalURL, "_blank");
-    };
+.card-label { margin: 0 0 15px; font-size: 1.1rem; color: var(--primary-blue); }
 
-    window.searchDealsFromBar = function() {
-        const disc = document.getElementById("discount-main").value;
-        searchDeals("", disc, getKW(), "aps", false);
-    };
+/* INPUTS */
+input, select { 
+    padding: 14px; 
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    font-size: 16px; 
+    width: 100%; 
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
 
-    window.resetFilters = function() {
-        document.getElementById("search-box").value = "";
-        document.getElementById("min-price").value = "";
-        document.getElementById("max-price").value = "";
-        document.getElementById("prime-only").checked = false;
-        document.getElementById("discount-main").value = "50-99";
-        document.getElementById("sort-order").value = "relevancerank";
-    };
+.advanced-row { display: flex; gap: 10px; margin-bottom: 12px; }
+.price-inputs { display: flex; gap: 5px; flex: 1; }
 
-    window.shareSite = function() {
-        if (navigator.share) {
-            navigator.share({
-                title: 'All The Discounts',
-                text: 'Check out this hidden Amazon deal finder!',
-                url: window.location.href
-            }).catch(console.error);
-        } else {
-            alert("Copy this link to share: " + window.location.href);
-        }
-    };
-});
+.filter-controls { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px;
+}
+
+.checkbox-group { display: flex; gap: 10px; font-size: 0.85rem; }
+
+.main-search-btn { 
+    background: var(--accent-orange); 
+    color: var(--primary-blue);
+    border: none; 
+    padding: 16px; 
+    font-weight: 800; 
+    font-size: 1.1rem;
+    border-radius: 10px; 
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #cc7a00;
+}
+
+.main-search-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #cc7a00; }
+
+.reset-btn { 
+    display: block; width: 100%; text-align: center; margin-top: 15px;
+    background: none; border: none; color: #999; text-decoration: underline; font-size: 0.8rem;
+}
+
+/* GRIDS */
+.section-title { font-size: 1.3rem; margin: 40px 0 15px; color: var(--primary-blue); border-left: 5px solid var(--accent-orange); padding-left: 10px; }
+.cat-label { display: block; margin-bottom: 15px; font-weight: 700; color: #444; }
+
+.pct-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.pct-grid button {
+    background: #f8f9fa; border: 1px solid #eee; padding: 15px 0; font-weight: 700;
+    border-radius: 10px; cursor: pointer; transition: 0.2s;
+}
+
+.pct-grid button:hover { background: #eef1f4; border-color: #ddd; }
+.pct-grid button:active { background: var(--primary-blue); color: white; }
+
+footer { text-align: center; padding: 60px 20px; font-size: 0.8rem; color: #bbb; }
