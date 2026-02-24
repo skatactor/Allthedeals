@@ -15,10 +15,10 @@ header { background: var(--amazon-blue); color: white; padding: 15px; text-align
 }
 
 .instructions {
-    background: #e7f3ff; border-left: 4px solid #4a90e2; padding: 12px;
+    background: #fff8e7; border-left: 4px solid var(--amazon-orange); padding: 12px;
     margin: 10px 0; border-radius: 6px; font-size: 0.8rem; line-height: 1.4;
 }
-.instructions h3 { margin: 0 0 5px; font-size: 0.9rem; color: #232f3e; }
+.instructions h3 { margin: 0 0 5px; font-size: 0.85rem; color: #856404; }
 
 input, select { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%; box-sizing: border-box; }
 .advanced-row { display: flex; gap: 8px; }
@@ -39,7 +39,7 @@ input, select { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-
 
 .pct-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
 .pct-grid button {
-    background: #f8f8f8; border: 1px solid #ddd; padding: 12px 0; font-size: 0.75rem;
+    background: #f8f8f8; border: 1px solid #ddd; padding: 12px 0; font-size: 0.7rem;
     font-weight: bold; border-radius: 4px; cursor: pointer;
 }
 .pct-grid button:active { background: var(--amazon-orange); color: white; }
