@@ -13,7 +13,12 @@ header { background: var(--amazon-blue); color: white; padding: 15px; text-align
     background: white; margin: 10px; padding: 15px; border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 10px;
 }
-.search-container h3 { margin: 0; font-size: 0.85rem; color: #666; text-transform: uppercase; }
+
+.instructions {
+    background: #e7f3ff; border-left: 4px solid #4a90e2; padding: 12px;
+    margin: 10px 0; border-radius: 6px; font-size: 0.8rem; line-height: 1.4;
+}
+.instructions h3 { margin: 0 0 5px; font-size: 0.9rem; color: #232f3e; }
 
 input, select { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; width: 100%; box-sizing: border-box; }
 .advanced-row { display: flex; gap: 8px; }
@@ -26,7 +31,7 @@ input, select { padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-
 .reset-btn { background: none; border: none; color: #888; text-decoration: underline; font-size: 0.75rem; cursor: pointer; align-self: center; }
 
 .container { padding: 10px; max-width: 600px; margin: 0 auto; }
-.step-label { font-size: 0.9rem; margin: 10px 0; color: var(--amazon-blue); font-weight: bold; }
+.step-label { font-size: 0.9rem; margin: 20px 0 10px; color: var(--amazon-blue); font-weight: bold; }
 .section-title { font-size: 1rem; border-bottom: 2px solid var(--amazon-orange); padding-bottom: 5px; margin: 25px 0 10px; color: var(--amazon-blue); }
 
 .category-block { background: white; padding: 12px; border-radius: 6px; margin-bottom: 12px; border: 1px solid #ddd; }
