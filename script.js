@@ -63,4 +63,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("discount-main").value = "50-99";
         document.getElementById("sort-order").value = "relevancerank";
     };
+
+    window.shareSite = function() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'All The Discounts',
+                text: 'Check out this hidden Amazon deal finder!',
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            alert("Copy this link to share: " + window.location.href);
+        }
+    };
 });
